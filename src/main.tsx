@@ -6,6 +6,7 @@ import Landing from "./pages/Landing";
 import Assortiment from "./pages/Assortiment";
 import Product from "./pages/Product";
 import Offerte from "./pages/Offerte";
+import Dashboard from "./pages/Dashboard";
 import ComingSoon from "./pages/ComingSoon";
 
 createRoot(document.getElementById("root")!).render(
@@ -16,6 +17,7 @@ createRoot(document.getElementById("root")!).render(
         <Route path="/assortiment" element={<Assortiment />} />
         <Route path="/product/:id" element={<Product />} />
         <Route path="/offerte" element={<Offerte />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/brandkit" element={<ComingSoon title="Brand kit" />} />
         <Route path="*" element={<ComingSoon title="Pagina niet gevonden" />} />
       </Routes>
