@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;}
+    html,body{margin:0;padding:0;background:#06090A;}
+    ::selection{background:#2DF5A6;color:#06090A;}
+    @keyframes ledpulse{0%,100%{opacity:.55;}50%{opacity:1;}}
+
+    @media print {
+      @page { size: A4; margin: 0; }
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      *, *::before, *::after {
+        animation-delay: -99s !important; animation-duration: .001s !important;
+        animation-iteration-count: 1 !important; animation-fill-mode: both !important;
+        animation-play-state: running !important; transition-duration: 0s !important;
+      }
+      /* neutralise the sticky bar so it doesn't repeat / overlap */
+      div[style*="position:sticky"] { position: static !important; }
+      /* each numbered chapter starts on a fresh sheet */
+      section[id="logo"], section[id="kleur"], section[id="type"],
+      section[id="voice"], section[id="toepassing"] { break-before: page; }
+      /* keep visual units whole */
+      section > div, a[href^="#"] { break-inside: avoid; }
+      h1, h2, h3 { break-after: avoid; }
+    }
+  </style>
+</helmet>
+
+<div style="background:#06090A;color:#EAF2EF;font-family:'Hanken Grotesk',system-ui,sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100%;overflow-x:hidden;">
+
+  <!-- ============ TOP BAR ============ -->
+  <div style="position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:16px 28px;background:rgba(6,9,10,0.72);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,0.07);">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <dc-import name="Mark" size="26" hint-size="26px,26px"></dc-import>
+      <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;letter-spacing:-0.01em;"><span style="background:linear-gradient(120deg,#2DF5A6,#1FD8E6);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">LED</span>sation</span>
+    </div>
+    <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#8A9A95;">Brand Kit · v1.0 · 2026</span>
+  </div>
+
+  <!-- ============ COVER ============ -->
+  <section style="position:relative;padding:120px 28px 110px;max-width:1180px;margin:0 auto;text-align:center;overflow:hidden;">
+    <div style="position:absolute;top:-120px;left:50%;transform:translateX(-50%);width:680px;height:680px;background:radial-gradient(circle,rgba(45,245,166,0.16),rgba(31,216,230,0.05) 45%,transparent 68%);filter:blur(20px);pointer-events:none;"></div>
+    <div style="position:relative;">
+      <div style="display:inline-flex;align-items:center;gap:10px;padding:8px 16px;border:1px solid rgba(45,245,166,0.3);border-radius:100px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:#2DF5A6;margin-bottom:38px;">
+        <span style="width:7px;height:7px;border-radius:50%;background:#2DF5A6;box-shadow:0 0 12px #2DF5A6;animation:ledpulse 2s infinite;"></span>
+        LED Wall Verhuur
+      </div>
+      <div style="display:flex;justify-content:center;margin-bottom:30px;">
+        <dc-import name="Mark" size="92" hint-size="92px,92px"></dc-import>
+      </div>
+      <h1 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(56px,11vw,128px);line-height:0.95;letter-spacing:-0.04em;margin:0 0 24px;"><span style="background:linear-gradient(120deg,#2DF5A6,#1FD8E6);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">LED</span>sation</h1>
+      <p style="font-family:'Space Grotesk',sans-serif;font-size:clamp(22px,3.4vw,34px);font-weight:500;margin:0 0 14px;letter-spacing:-0.01em;">Elke ruimte een sensatie.</p>
+      <p style="max-width:560px;margin:0 auto;color:#8A9A95;font-size:18px;">De complete merkidentiteit voor LEDsation — verhuur van LED walls voor corporate events, beurzen en feesten in heel Nederland.</p>
+    </div>
+  </section>
+
+  <!-- ============ INDEX ============ -->
+  <section style="max-width:1140px;margin:0 auto;padding:0 28px 60px;">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.07);border-radius:14px;overflow:hidden;">
+      <a href="#logo" style="padding:20px 22px;background:#0B0F11;text-decoration:none;color:#EAF2EF;font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.04em;"><span style="color:#2DF5A6;">01</span> &nbsp;Logo</a>
+      <a href="#kleur" style="padding:20px 22px;background:#0B0F11;text-decoration:none;color:#EAF2EF;font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.04em;"><span style="color:#2DF5A6;">02</span> &nbsp;Kleur</a>
+      <a href="#type" style="padding:20px 22px;background:#0B0F11;text-decoration:none;color:#EAF2EF;font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.04em;"><span style="color:#2DF5A6;">03</span> &nbsp;Typografie</a>
+      <a href="#voice" style="padding:20px 22px;background:#0B0F11;text-decoration:none;color:#EAF2EF;font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.04em;"><span style="color:#2DF5A6;">04</span> &nbsp;Tone of voice</a>
+      <a href="#toepassing" style="padding:20px 22px;background:#0B0F11;text-decoration:none;color:#EAF2EF;font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.04em;"><span style="color:#2DF5A6;">05</span> &nbsp;Toepassingen</a>
+    </div>
+  </section>
+
+  <!-- ============ 01 LOGO ============ -->
+  <section id="logo" style="max-width:1140px;margin:0 auto;padding:60px 28px;">
+    <div style="display:flex;align-items:baseline;gap:16px;margin-bottom:14px;">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#2DF5A6;letter-spacing:0.1em;">01</span>
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(30px,5vw,46px);margin:0;letter-spacing:-0.02em;">Logo</h2>
+    </div>
+    <p style="max-width:620px;color:#8A9A95;margin:0 0 40px;">Het merk bestaat uit het <strong style="color:#EAF2EF;font-weight:600;">equalizer-symbool</strong> — een pixelraster dat verwijst naar beeld, geluid en energie — gecombineerd met het woordmerk. <em>LED</em> krijgt altijd het kleuraccent, <em>sation</em> blijft neutraal.</p>
+
+    <!-- Primary lockup -->
+    <div style="position:relative;background:#0B0F11;border:1px solid rgba(255,255,255,0.07);border-radius:20px;padding:72px 40px;display:flex;align-items:center;justify-content:center;gap:32px;overflow:hidden;margin-bottom:18px;">
+      <div style="position:absolute;inset:0;background:radial-gradient(circle at 30% 40%,rgba(45,245,166,0.08),transparent 60%);"></div>
+      <div style="position:relative;display:flex;align-items:center;gap:30px;">
+        <dc-import name="Mark" size="84" hint-size="84px,84px"></dc-import>
+        <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:64px;letter-spacing:-0.03em;line-height:1;"><span style="background:linear-gradient(120deg,#2DF5A6,#1FD8E6);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">LED</span>sation</span>
+      </div>
+      <span style="position:absolute;left:20px;top:18px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:#5A6B66;">Primaire lockup</span>
+    </div>
+
+    <!-- Variants grid -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;">
+      <!-- stacked -->
+      <div style="background:#0B0F11;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:38px;display:flex;flex-direction:column;align-items:center;gap:16px;">
+        <dc-import name="Mark" size="56" hint-size="56px,56px"></dc-import>
+        <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:28px;letter-spacing:-0.02em;"><span style="background:linear-gradient(120deg,#2DF5A6,#1FD8E6);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">LED</span>sation</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#5A6B66;">Gestapeld</span>
+      </div>
+      <!-- mono white -->
+      <div style="background:#0B0F11;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:38px;display:flex;flex-direction:column;align-items:center;gap:16px;justify-content:center;">
+        <dc-import name="Mark" size="48" color="#EAF2EF" glow="{{ false }}" hint-size="48px,48px"></dc-import>
+        <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:24px;letter-spacing:-0.02em;color:#EAF2EF;">LEDsation</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#5A6B66;">Mono wit</span>
+      </div>
+      <!-- on light -->
+      <div style="background:#EAF2EF;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:38px;display:flex;flex-direction:column;align-items:center;gap:16px;justify-content:center;">
+        <dc-import name="Mark" size="48" color="#0B0F11" dim="rgba(0,0,0,0.08)" glow="{{ false }}" hint-size="48px,48px"></dc-import>
+        <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:24px;letter-spacing:-0.02em;color:#0B0F11;">LEDsation</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#7A8A85;">Op licht</span>
+      </div>
+      <!-- symbol only -->
+      <div style="background:#0B0F11;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:38px;display:flex;flex-direction:column;align-items:center;gap:16px;justify-content:center;">
+        <dc-import name="Mark" size="64" hint-size="64px,64px"></dc-import>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#5A6B66;">Symbool</span>
+      </div>
+    </div>
+
+    <!-- clear space note -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:18px;">
+      <div style="background:#0B0F11;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:28px;">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#2DF5A6;">Witruimte</span>
+        <p style="margin:12px 0 0;color:#A9B7B2;font-size:15px;">Houd rondom het logo minimaal de hoogte van één pixelblok vrij. Plaats nooit tekst of randen binnen die zone.</p>
+      </div>
+      <div style="background:#0B0F11;border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:28px;">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#2DF5A6;">Minimale maat</span>
+        <p style="margin:12px 0 0;color:#A9B7B2;font-size:15px;">Symbool niet kleiner dan 24&nbsp;px (digitaal) of 8&nbsp;mm (print). Het woordmerk niet onder 16&nbsp;px hoogte.</p>
+      </div>
+      <div style="background:#1A0E10;border:1px solid rgba(255,90,90,0.2);border-radius:16px;padding:28px;">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#FF7A7A;">Niet doen</span>
+        <p style="margin:12px 0 0;color:#A9B7B2;font-size:15px;">Niet uitrekken, niet draaien, geen andere kleur op <em>sation</em>, en niet plaatsen op rommelige achtergronden zonder contrast.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 02 KLEUR ============ -->
+  <section id="kleur" style="max-width:1140px;margin:0 auto;padding:60px 28px;">
+    <div style="display:flex;align-items:baseline;gap:16px;margin-bottom:14px;">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#2DF5A6;letter-spacing:0.1em;">02</span>
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(30px,5vw,46px);margin:0;letter-spacing:-0.02em;">Kleur</h2>
+    </div>
+    <p style="max-width:620px;color:#8A9A95;margin:0 0 40px;">Een diepe, bijna-zwarte basis laat de LED-kleuren oplichten. <strong style="color:#2DF5A6;font-weight:600;">Mint</strong> is de hoofdaccentkleur, <strong style="color:#1FD8E6;font-weight:600;">Cyaan</strong> ondersteunt in verlopen en glows.</p>
+
+    <!-- hero accents -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-bottom:18px;">
+      <div style="border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,0.07);">
+        <div style="height:150px;background:linear-gradient(135deg,#2DF5A6,#1FD8E6);"></div>
+        <div style="padding:22px;background:#0B0F11;">
+          <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:18px;">Signal Gradient</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#8A9A95;margin-top:6px;">#2DF5A6 → #1FD8E6</div>
+          <div style="font-size:14px;color:#8A9A95;margin-top:8px;">Knoppen, glows, highlights.</div>
+        </div>
+      </div>
+      <div style="border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,0.07);">
+        <div style="height:150px;background:#2DF5A6;"></div>
+        <div style="padding:22px;background:#0B0F11;">
+          <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:18px;">LED Mint</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#8A9A95;margin-top:6px;">#2DF5A6 · oklch(.88 .19 165)</div>
+          <div style="font-size:14px;color:#8A9A95;margin-top:8px;">Primair accent.</div>
+        </div>
+      </div>
+      <div style="border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,0.07);">
+        <div style="height:150px;background:#1FD8E6;"></div>
+        <div style="padding:22px;background:#0B0F11;">
+          <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:18px;">Pulse Cyan</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#8A9A95;margin-top:6px;">#1FD8E6 · oklch(.82 .12 205)</div>
+          <div style="font-size:14px;color:#8A9A95;margin-top:8px;">Secundair accent.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- neutrals row -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.07);border-radius:16px;overflow:hidden;">
+      <div style="background:#06090A;padding:24px;min-height:140px;display:flex;flex-direction:column;justify-content:flex-end;">
+        <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;color:#EAF2EF;">Void</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#8A9A95;margin-top:4px;">#06090A</div>
+        <div style="font-size:12px;color:#5A6B66;margin-top:4px;">Achtergrond</div>
+      </div>
+      <div style="background:#0B0F11;padding:24px;min-height:140px;display:flex;flex-direction:column;justify-content:flex-end;">
+        <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;color:#EAF2EF;">Panel</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#8A9A95;margin-top:4px;">#0B0F11</div>
+        <div style="font-size:12px;color:#5A6B66;margin-top:4px;">Kaarten</div>
+      </div>
+      <div style="background:#151C1F;padding:24px;min-height:140px;display:flex;flex-direction:column;justify-content:flex-end;">
+        <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;color:#EAF2EF;">Slate</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#8A9A95;margin-top:4px;">#151C1F</div>
+        <div style="font-size:12px;color:#5A6B66;margin-top:4px;">Randen / hover</div>
+      </div>
+      <div style="background:#8A9A95;padding:24px;min-height:140px;display:flex;flex-direction:column;justify-content:flex-end;">
+        <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;color:#06090A;">Mist</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#06090A;margin-top:4px;">#8A9A95</div>
+        <div style="font-size:12px;color:#243029;margin-top:4px;">Subtekst</div>
+      </div>
+      <div style="background:#EAF2EF;padding:24px;min-height:140px;display:flex;flex-direction:column;justify-content:flex-end;">
+        <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;color:#06090A;">Cloud</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#3A4642;margin-top:4px;">#EAF2EF</div>
+        <div style="font-size:12px;color:#5A6B66;margin-top:4px;">Tekst</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 03 TYPE ============ -->
+  <section id="type" style="max-width:1140px;margin:0 auto;padding:60px 28px;">
+    <div style="display:flex;align-items:baseline;gap:16px;margin-bottom:14px;">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#2DF5A6;letter-spacing:0.1em;">03</span>
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(30px,5vw,46px);margin:0;letter-spacing:-0.02em;">Typografie</h2>
+    </div>
+    <p style="max-width:620px;color:#8A9A95;margin:0 0 40px;">Drie lettertypes met elk een eigen rol: koppen, lopende tekst en technische labels.</p>
+
+    <div style="display:grid;gap:18px;">
+      <div style="background:#0B0F11;border:1px solid rgba(255,255,255,0.07);border-radius:18px;padding:36px;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;margin-bottom:18px;">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:#2DF5A6;">Display · koppen</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#8A9A95;">Space Grotesk · 600/700</span>
+        </div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(40px,8vw,76px);line-height:1;letter-spacing:-0.03em;">Indrukwekkend groot</div>
+      </div>
+
+      <div style="background:#0B0F11;border:1px solid rgba(255,255,255,0.07);border-radius:18px;padding:36px;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;margin-bottom:18px;">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:#2DF5A6;">Body · lopende tekst</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#8A9A95;">Hanken Grotesk · 400/600</span>
+        </div>
+        <p style="font-family:'Hanken Grotesk',sans-serif;font-size:21px;line-height:1.6;margin:0;max-width:680px;">LEDsation verhuurt en installeert hoogwaardige LED walls voor evenementen door heel Nederland. Van een strakke achtergrond op je beursstand tot een meeslepend scherm op de dansvloer — wij regelen levering, opbouw en bediening.</p>
+      </div>
+
+      <div style="background:#0B0F11;border:1px solid rgba(255,255,255,0.07);border-radius:18px;padding:36px;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;margin-bottom:18px;">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:#2DF5A6;">Mono · labels & specs</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#8A9A95;">JetBrains Mono · 400/500</span>
+        </div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:18px;color:#A9B7B2;letter-spacing:0.02em;">PITCH 2.6MM · 4500 NITS · 16:9 · 1920×1080PX</div>
+      </div>
+    </div>
+
+    <!-- scale -->
+    <div style="margin-top:18px;background:#0B0F11;border:1px solid rgba(255,255,255,0.07);border-radius:18px;padding:36px;display:grid;gap:18px;">
+      <div style="display:flex;align-items:baseline;gap:20px;border-bottom:1px solid rgba(255,255,255,0.06);padding-bottom:14px;"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#5A6B66;width:90px;flex-shrink:0;">Display</span><span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:46px;letter-spacing:-0.02em;">Aa</span></div>
+      <div style="display:flex;align-items:baseline;gap:20px;border-bottom:1px solid rgba(255,255,255,0.06);padding-bottom:14px;"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#5A6B66;width:90px;flex-shrink:0;">H2 · 32</span><span style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:32px;">Koptekst niveau twee</span></div>
+      <div style="display:flex;align-items:baseline;gap:20px;border-bottom:1px solid rgba(255,255,255,0.06);padding-bottom:14px;"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#5A6B66;width:90px;flex-shrink:0;">Body · 17</span><span style="font-family:'Hanken Grotesk',sans-serif;font-size:17px;">Standaard lopende tekst voor de website en documenten.</span></div>
+      <div style="display:flex;align-items:baseline;gap:20px;"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#5A6B66;width:90px;flex-shrink:0;">Label · 12</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#A9B7B2;">Technisch label</span></div>
+    </div>
+  </section>
+
+  <!-- ============ 04 VOICE ============ -->
+  <section id="voice" style="max-width:1140px;margin:0 auto;padding:60px 28px;">
+    <div style="display:flex;align-items:baseline;gap:16px;margin-bottom:14px;">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#2DF5A6;letter-spacing:0.1em;">04</span>
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(30px,5vw,46px);margin:0;letter-spacing:-0.02em;">Tone of voice</h2>
+    </div>
+    <p style="max-width:620px;color:#8A9A95;margin:0 0 40px;">Zelfverzekerd en helder, nooit schreeuwerig. We laten het beeld het werk doen.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;margin-bottom:18px;">
+      <div style="background:linear-gradient(160deg,#0E1A16,#0B0F11);border:1px solid rgba(45,245,166,0.18);border-radius:18px;padding:32px;">
+        <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:26px;color:#2DF5A6;">Indrukwekkend</div>
+        <p style="margin:10px 0 0;color:#A9B7B2;font-size:15px;">We beloven impact en maken het waar met formaat en helderheid.</p>
+      </div>
+      <div style="background:linear-gradient(160deg,#0E1A16,#0B0F11);border:1px solid rgba(45,245,166,0.18);border-radius:18px;padding:32px;">
+        <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:26px;color:#2DF5A6;">Vernieuwend</div>
+        <p style="margin:10px 0 0;color:#A9B7B2;font-size:15px;">Nieuwste panelen, slimme techniek, vooruitstrevende oplossingen.</p>
+      </div>
+      <div style="background:linear-gradient(160deg,#0E1A16,#0B0F11);border:1px solid rgba(45,245,166,0.18);border-radius:18px;padding:32px;">
+        <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:26px;color:#2DF5A6;">Opvallend</div>
+        <p style="margin:10px 0 0;color:#A9B7B2;font-size:15px;">Alles wat we leveren trekt de aandacht — en houdt die vast.</p>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;">
+      <div style="background:#0B0F11;border:1px solid rgba(255,255,255,0.07);border-radius:18px;padding:32px;">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#2DF5A6;">Taglines</span>
+        <div style="display:flex;flex-direction:column;gap:14px;margin-top:18px;">
+          <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:22px;letter-spacing:-0.01em;">Elke ruimte een sensatie.</div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:18px;color:#A9B7B2;">Schermen die indruk maken.</div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:18px;color:#A9B7B2;">Jouw verhaal, in volle kleur.</div>
+        </div>
+      </div>
+      <div style="background:#0B0F11;border:1px solid rgba(255,255,255,0.07);border-radius:18px;padding:32px;">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#2DF5A6;">Wel / niet</span>
+        <div style="margin-top:18px;display:grid;gap:12px;">
+          <div style="display:flex;gap:12px;align-items:flex-start;"><span style="color:#2DF5A6;font-weight:700;">+</span><span style="color:#A9B7B2;font-size:15px;">"Wij regelen opbouw, bediening en afbouw — jij geniet van het resultaat."</span></div>
+          <div style="display:flex;gap:12px;align-items:flex-start;"><span style="color:#2DF5A6;font-weight:700;">+</span><span style="color:#A9B7B2;font-size:15px;">Korte zinnen, concrete cijfers, actief taalgebruik.</span></div>
+          <div style="display:flex;gap:12px;align-items:flex-start;"><span style="color:#FF7A7A;font-weight:700;">–</span><span style="color:#6A7A75;font-size:15px;">Geen vakjargon-overdaad of holle superlatieven.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 05 TOEPASSINGEN ============ -->
+  <section id="toepassing" style="max-width:1140px;margin:0 auto;padding:60px 28px 40px;">
+    <div style="display:flex;align-items:baseline;gap:16px;margin-bottom:14px;">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#2DF5A6;letter-spacing:0.1em;">05</span>
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(30px,5vw,46px);margin:0;letter-spacing:-0.02em;">Toepassingen</h2>
+    </div>
+    <p style="max-width:620px;color:#8A9A95;margin:0 0 40px;">Het merk in gebruik — vervang de gestreepte vlakken later door echt beeldmateriaal van je projecten.</p>
+
+    <!-- LED wall mockup -->
+    <div style="position:relative;border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,0.07);background:#0B0F11;padding:40px;margin-bottom:18px;">
+      <div style="position:relative;width:100%;aspect-ratio:16/9;border-radius:12px;background:repeating-linear-gradient(45deg,#111A1C,#111A1C 14px,#0E1517 14px,#0E1517 28px);display:flex;align-items:center;justify-content:center;box-shadow:0 0 80px rgba(45,245,166,0.18);">
+        <div style="text-align:center;">
+          <div style="display:flex;justify-content:center;margin-bottom:18px;"><dc-import name="Mark" size="60" hint-size="60px,60px"></dc-import></div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(28px,5vw,52px);letter-spacing:-0.02em;"><span style="background:linear-gradient(120deg,#2DF5A6,#1FD8E6);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">LED</span>sation</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.2em;color:#5A6B66;margin-top:14px;">EVENTBEELD · 16:9 · VERVANG DOOR PROJECTFOTO</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;">
+      <!-- business card front -->
+      <div style="background:#0B0F11;border:1px solid rgba(255,255,255,0.07);border-radius:18px;padding:30px;display:flex;flex-direction:column;align-items:center;gap:16px;">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#5A6B66;align-self:flex-start;">Visitekaartje · voor</span>
+        <div style="width:100%;max-width:380px;aspect-ratio:1.585;border-radius:12px;background:linear-gradient(150deg,#0E1517,#06090A);border:1px solid rgba(255,255,255,0.08);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;gap:16px;">
+          <div style="position:absolute;top:-40px;right:-40px;width:160px;height:160px;background:radial-gradient(circle,rgba(45,245,166,0.18),transparent 70%);"></div>
+          <dc-import name="Mark" size="44" hint-size="44px,44px"></dc-import>
+          <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:26px;letter-spacing:-0.02em;"><span style="background:linear-gradient(120deg,#2DF5A6,#1FD8E6);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">LED</span>sation</span>
+        </div>
+      </div>
+      <!-- business card back -->
+      <div style="background:#0B0F11;border:1px solid rgba(255,255,255,0.07);border-radius:18px;padding:30px;display:flex;flex-direction:column;align-items:center;gap:16px;">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#5A6B66;align-self:flex-start;">Visitekaartje · achter</span>
+        <div style="width:100%;max-width:380px;aspect-ratio:1.585;border-radius:12px;background:#EAF2EF;color:#06090A;position:relative;overflow:hidden;padding:26px;display:flex;flex-direction:column;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:10px;"><dc-import name="Mark" size="26" color="#06090A" dim="rgba(0,0,0,0.1)" glow="{{ false }}" hint-size="26px,26px"></dc-import><span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;">LEDsation</span></div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.9;color:#3A4642;">
+            <div>JOUW NAAM · VERHUUR</div>
+            <div>06 12 34 56 78</div>
+            <div>hallo@ledsation.nl</div>
+            <div>ledsation.nl</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- avatars + banner -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:18px;margin-top:18px;align-items:stretch;">
+      <div style="background:#0B0F11;border:1px solid rgba(255,255,255,0.07);border-radius:18px;padding:28px;display:flex;flex-direction:column;align-items:center;gap:14px;">
+        <div style="width:108px;height:108px;border-radius:24px;background:linear-gradient(150deg,#0E1517,#06090A);display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.08);"><dc-import name="Mark" size="56" hint-size="56px,56px"></dc-import></div>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#5A6B66;">App-icoon</span>
+      </div>
+      <div style="background:#0B0F11;border:1px solid rgba(255,255,255,0.07);border-radius:18px;padding:28px;display:flex;flex-direction:column;align-items:center;gap:14px;">
+        <div style="width:108px;height:108px;border-radius:50%;background:linear-gradient(150deg,#0E1517,#06090A);display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.08);"><dc-import name="Mark" size="52" hint-size="52px,52px"></dc-import></div>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#5A6B66;">Social avatar</span>
+      </div>
+      <div style="background:linear-gradient(135deg,#2DF5A6,#1FD8E6);border-radius:18px;padding:28px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;">
+        <div style="width:108px;height:108px;border-radius:24px;background:#06090A;display:flex;align-items:center;justify-content:center;"><dc-import name="Mark" size="56" hint-size="56px,56px"></dc-import></div>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#06433099;">Op accent</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER / CTA ============ -->
+  <section style="max-width:1140px;margin:0 auto;padding:30px 28px 100px;">
+    <div style="position:relative;border-radius:24px;overflow:hidden;border:1px solid rgba(45,245,166,0.2);background:linear-gradient(160deg,#0E1A16,#06090A);padding:64px 40px;text-align:center;">
+      <div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(45,245,166,0.16),transparent 60%);"></div>
+      <div style="position:relative;">
+        <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(28px,5vw,44px);margin:0 0 16px;letter-spacing:-0.02em;">Bekijk de landingspagina</h3>
+        <p style="color:#8A9A95;max-width:480px;margin:0 auto 28px;">De brandkit toegepast op een echte pagina — hero, diensten, projecten en offerte-aanvraag.</p>
+        <a href="LEDsation Landing.dc.html" style="display:inline-flex;align-items:center;gap:10px;padding:16px 30px;border-radius:100px;background:linear-gradient(120deg,#2DF5A6,#1FD8E6);color:#06090A;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;text-decoration:none;box-shadow:0 0 40px rgba(45,245,166,0.4);">Open landingspagina →</a>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:40px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:#3A4642;">LEDsation · Brand Kit · Nederland · 2026</div>
+  </section>
+
+</div>
+</x-dc>
+<script>
+addEventListener('load', () => {
+  (async () => {
+    try { await document.fonts.ready; } catch (e) {}
+    // wait until the DC runtime has mounted the logo marks
+    const start = Date.now();
+    while (!document.querySelector('svg, [style*="grid-template-columns"]') && Date.now() - start < 6000) {
+      await new Promise((r) => setTimeout(r, 100));
+    }
+    const imgs = Array.from(document.images).filter((i) => !i.complete);
+    await Promise.race([
+      Promise.allSettled(imgs.map((i) => i.decode())),
+      new Promise((r) => setTimeout(r, 8000)),
+    ]);
+    setTimeout(() => window.print(), 700);
+  })();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="products.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <style>
+    *{box-sizing:border-box;}
+    html,body{margin:0;padding:0;background:#06090A;scroll-behavior:smooth;}
+    ::selection{background:#2DF5A6;color:#06090A;}
+    @keyframes ledpulse{0%,100%{opacity:.5;}50%{opacity:1;}}
+    @keyframes pop{0%{transform:scale(.8);opacity:0;}100%{transform:scale(1);opacity:1;}}
+    a{color:inherit;}
+    input::placeholder,textarea::placeholder{color:#5A6B66;}
+    input:focus,textarea:focus,select:focus{outline:none;border-color:#2DF5A6 !important;}
+    select option{background:#0B0F11;color:#EAF2EF;}
+  </style>
+</helmet>
+
+<div style="background:#06090A;color:#EAF2EF;font-family:'Hanken Grotesk',system-ui,sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100%;overflow-x:hidden;">
+
+  <!-- NAV -->
+  <nav style="position:sticky;top:0;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:16px 32px;background:rgba(6,9,10,0.7);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,0.06);">
+    <a href="LEDsation Landing.dc.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+      <dc-import name="Mark" size="28" hint-size="28px,28px"></dc-import>
+      <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:19px;letter-spacing:-0.01em;color:#EAF2EF;"><span style="background:linear-gradient(120deg,#2DF5A6,#1FD8E6);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">LED</span>sation</span>
+    </a>
+    <div style="display:flex;align-items:center;gap:32px;">
+      <div style="display:flex;gap:28px;font-size:15px;color:#A9B7B2;">
+        <a href="LEDsation Landing.dc.html" style="text-decoration:none;">Home</a>
+        <a href="LEDsation Assortiment.dc.html" style="text-decoration:none;">Assortiment</a>
+        <a href="LEDsation Landing.dc.html#projecten" style="text-decoration:none;">Projecten</a>
+      </div>
+      <span style="padding:11px 22px;border-radius:100px;background:rgba(45,245,166,0.12);border:1px solid rgba(45,245,166,0.35);color:#2DF5A6;font-weight:700;font-size:15px;">Offerte</span>
+    </div>
+  </nav>
+
+  <!-- FORM STATE -->
+  <sc-if value="{{ showForm }}" hint-placeholder-val="{{ true }}">
+    <div style="max-width:1080px;margin:0 auto;padding:60px 32px 90px;">
+      <div style="display:grid;grid-template-columns:0.85fr 1.15fr;gap:52px;align-items:start;">
+
+        <!-- LEFT: intro + reassurance -->
+        <div style="position:sticky;top:96px;">
+          <div style="display:inline-flex;align-items:center;gap:10px;padding:8px 16px;border:1px solid rgba(45,245,166,0.3);border-radius:100px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#2DF5A6;margin-bottom:24px;">
+            <span style="width:7px;height:7px;border-radius:50%;background:#2DF5A6;box-shadow:0 0 12px #2DF5A6;animation:ledpulse 2s infinite;"></span>
+            Offerte aanvragen
+          </div>
+          <h1 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(34px,4.6vw,52px);line-height:1.02;letter-spacing:-0.03em;margin:0 0 18px;">Vertel ons over je <span style="background:linear-gradient(120deg,#2DF5A6,#1FD8E6);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">evenement</span>.</h1>
+          <p style="font-size:18px;color:#A9B7B2;margin:0 0 30px;">Hoe meer je ons vertelt, hoe scherper onze offerte. Binnen één werkdag hoor je van ons — vrijblijvend en op maat.</p>
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <div style="display:flex;gap:13px;align-items:flex-start;"><span style="flex-shrink:0;width:24px;height:24px;border-radius:8px;background:rgba(45,245,166,0.14);color:#2DF5A6;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;">✓</span><span style="color:#D6E2DE;font-size:16px;">Reactie binnen 1 werkdag</span></div>
+            <div style="display:flex;gap:13px;align-items:flex-start;"><span style="flex-shrink:0;width:24px;height:24px;border-radius:8px;background:rgba(45,245,166,0.14);color:#2DF5A6;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;">✓</span><span style="color:#D6E2DE;font-size:16px;">Advies over pitch, formaat & plaatsing</span></div>
+            <div style="display:flex;gap:13px;align-items:flex-start;"><span style="flex-shrink:0;width:24px;height:24px;border-radius:8px;background:rgba(45,245,166,0.14);color:#2DF5A6;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;">✓</span><span style="color:#D6E2DE;font-size:16px;">Incl. transport, opbouw & bediening</span></div>
+          </div>
+          <div style="margin-top:32px;padding-top:26px;border-top:1px solid rgba(255,255,255,0.08);font-family:'JetBrains Mono',monospace;font-size:13px;color:#8A9A95;line-height:2;">
+            <div>→ 06 12 34 56 78</div>
+            <div>→ hallo@ledsation.nl</div>
+          </div>
+        </div>
+
+        <!-- RIGHT: form -->
+        <form onSubmit="{{ onSubmit }}" novalidate="{{ true }}" style="background:#0B0F11;border:1px solid rgba(255,255,255,0.08);border-radius:22px;padding:34px;">
+
+          <!-- section: product -->
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#2DF5A6;margin-bottom:16px;">01 · Welk scherm</div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:30px;">
+            <sc-for list="{{ productChips }}" as="c" hint-placeholder-count="6">
+              <div onClick="{{ c.onClick }}" style="{{ c.style }}">
+                <span style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;">{{ c.name }}</span>
+                <span style="font-size:12px;color:#8A9A95;">{{ c.category }}</span>
+              </div>
+            </sc-for>
+            <div onClick="{{ onPickUnsure }}" style="{{ unsureStyle }}">
+              <span style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;">Weet ik nog niet</span>
+              <span style="font-size:12px;color:#8A9A95;">Adviseer mij</span>
+            </div>
+          </div>
+
+          <!-- section: event -->
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#2DF5A6;margin-bottom:16px;">02 · Je evenement</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
+            <label style="display:flex;flex-direction:column;gap:7px;">
+              <span style="font-size:13px;color:#A9B7B2;">Type evenement</span>
+              <select value="{{ f.eventType }}" onChange="{{ setField.eventType }}" style="{{ inputStyle }}">
+                <option value="">Kies…</option>
+                <option value="Corporate event">Corporate event</option>
+                <option value="Beurs / stand">Beurs / stand</option>
+                <option value="Concert / festival">Concert / festival</option>
+                <option value="Bruiloft / feest">Bruiloft / feest</option>
+                <option value="Anders">Anders</option>
+              </select>
+            </label>
+            <label style="display:flex;flex-direction:column;gap:7px;">
+              <span style="font-size:13px;color:#A9B7B2;">Binnen of buiten?</span>
+              <select value="{{ f.indoor }}" onChange="{{ setField.indoor }}" style="{{ inputStyle }}">
+                <option value="">Kies…</option>
+                <option value="Binnen">Binnen</option>
+                <option value="Buiten">Buiten</option>
+                <option value="Beide">Beide</option>
+              </select>
+            </label>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
+            <label style="display:flex;flex-direction:column;gap:7px;">
+              <span style="font-size:13px;color:#A9B7B2;">Startdatum</span>
+              <input type="date" min="{{ todayISO }}" value="{{ f.date }}" onChange="{{ setField.date }}" style="{{ inputStyle }}">
+            </label>
+            <label style="display:flex;flex-direction:column;gap:7px;">
+              <span style="font-size:13px;color:#A9B7B2;">Einddatum <span style="color:#5A6B66;">(optioneel)</span></span>
+              <input type="date" min="{{ todayISO }}" value="{{ f.dateEnd }}" onChange="{{ setField.dateEnd }}" style="{{ inputStyle }}">
+            </label>
+          </div>
+          <sc-if value="{{ availConflict }}" hint-placeholder-val="{{ false }}">
+            <div style="margin:-4px 0 22px;padding:14px 16px;border-radius:12px;background:rgba(242,166,90,0.1);border:1px solid rgba(242,166,90,0.35);">
+              <div style="display:flex;gap:10px;align-items:flex-start;">
+                <span style="color:#F2A65A;font-weight:700;font-size:16px;line-height:1.3;">!</span>
+                <div style="flex:1;min-width:0;">
+                  <div style="color:#F2A65A;font-weight:600;font-size:14px;">{{ availConflictMsg }}</div>
+                  <sc-if value="{{ availHasAlts }}" hint-placeholder-val="{{ true }}">
+                    <div style="margin-top:10px;font-size:13px;color:#A9B7B2;">Wel beschikbaar op deze datums — kies een alternatief:</div>
+                    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;">
+                      <sc-for list="{{ availAlternatives }}" as="alt" hint-placeholder-count="2">
+                        <button type="button" onClick="{{ alt.onPick }}" style="padding:7px 14px;border-radius:100px;border:1px solid rgba(45,245,166,0.4);background:rgba(45,245,166,0.1);color:#2DF5A6;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:13px;cursor:pointer;">{{ alt.name }}</button>
+                      </sc-for>
+                    </div>
+                  </sc-if>
+                  <sc-if value="{{ availNoAlts }}" hint-placeholder-val="{{ false }}">
+                    <div style="margin-top:8px;font-size:13px;color:#A9B7B2;">Op deze datums is helaas geen enkel scherm vrij. Kies een andere datum.</div>
+                  </sc-if>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+          <sc-if value="{{ availOk }}" hint-placeholder-val="{{ false }}">
+            <div style="margin:-4px 0 22px;padding:12px 16px;border-radius:12px;background:rgba(45,245,166,0.08);border:1px solid rgba(45,245,166,0.3);color:#2DF5A6;font-size:14px;display:flex;gap:10px;align-items:center;">
+              <span style="font-weight:700;">✓</span><span>{{ availMessage }}</span>
+            </div>
+          </sc-if>
+          <label style="display:flex;flex-direction:column;gap:7px;margin-bottom:30px;">
+            <span style="font-size:13px;color:#A9B7B2;">Locatie / plaats</span>
+            <input type="text" placeholder="bijv. RAI Amsterdam" value="{{ f.location }}" onInput="{{ setField.location }}" style="{{ inputStyle }}">
+          </label>
+
+          <!-- section: opmerkingen -->
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#2DF5A6;margin-bottom:16px;">03 · Opmerkingen</div>
+          <label style="display:flex;flex-direction:column;gap:7px;margin-bottom:30px;">
+            <span style="font-size:13px;color:#A9B7B2;">Opmerkingen <span style="color:#5A6B66;">(optioneel)</span></span>
+            <textarea rows="4" placeholder="Heb je nog vragen of wensen? Laat het hier weten…" value="{{ f.notes }}" onInput="{{ setField.notes }}" style="{{ textareaStyle }}"></textarea>
+          </label>
+
+          <!-- section: contact -->
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#2DF5A6;margin-bottom:16px;">04 · Contactgegevens</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
+            <label style="display:flex;flex-direction:column;gap:7px;">
+              <span style="font-size:13px;color:#A9B7B2;">Naam <span style="color:#2DF5A6;">*</span></span>
+              <input type="text" placeholder="Voor- en achternaam" value="{{ f.name }}" onInput="{{ setField.name }}" ref="{{ nameRef }}" style="{{ nameStyle }}">
+            </label>
+            <label style="display:flex;flex-direction:column;gap:7px;">
+              <span style="font-size:13px;color:#A9B7B2;">Bedrijf <span style="color:#5A6B66;">(optioneel)</span></span>
+              <input type="text" placeholder="Organisatie" value="{{ f.company }}" onInput="{{ setField.company }}" style="{{ inputStyle }}">
+            </label>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:26px;">
+            <label style="display:flex;flex-direction:column;gap:7px;">
+              <span style="font-size:13px;color:#A9B7B2;">E-mail <span style="color:#2DF5A6;">*</span></span>
+              <input type="text" inputmode="email" placeholder="info@ledsation.nl" value="{{ f.email }}" onInput="{{ setField.email }}" ref="{{ emailRef }}" style="{{ emailStyle }}">
+            </label>
+            <label style="display:flex;flex-direction:column;gap:7px;">
+              <span style="font-size:13px;color:#A9B7B2;">Telefoon <span style="color:#5A6B66;">(optioneel)</span></span>
+              <input type="tel" placeholder="06 …" value="{{ f.phone }}" onInput="{{ setField.phone }}" style="{{ inputStyle }}">
+            </label>
+          </div>
+
+          <sc-if value="{{ hasError }}" hint-placeholder-val="{{ false }}">
+            <div style="margin-bottom:18px;padding:12px 16px;border-radius:11px;background:rgba(255,122,122,0.1);border:1px solid rgba(255,122,122,0.3);color:#FF9A9A;font-size:14px;">{{ errorMsg }}</div>
+          </sc-if>
+
+          <button type="submit" disabled="{{ sending }}" style="{{ submitStyle }}">{{ submitLabel }}</button>
+          <p style="text-align:center;color:#5A6B66;font-size:13px;margin:16px 0 0;">Je zit nergens aan vast. We gebruiken je gegevens alleen voor deze offerte.</p>
+        </form>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- SUCCESS STATE -->
+  <sc-if value="{{ showSuccess }}" hint-placeholder-val="{{ false }}">
+    <div style="max-width:640px;margin:0 auto;padding:90px 32px;text-align:center;">
+      <div style="width:88px;height:88px;margin:0 auto 28px;border-radius:24px;background:linear-gradient(135deg,#2DF5A6,#1FD8E6);display:flex;align-items:center;justify-content:center;font-size:44px;color:#06090A;font-weight:700;box-shadow:0 0 50px rgba(45,245,166,0.4);animation:pop .4s ease;">✓</div>
+      <h1 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(30px,4.5vw,44px);letter-spacing:-0.02em;margin:0 0 14px;">Aanvraag ontvangen!</h1>
+      <p style="font-size:18px;color:#A9B7B2;margin:0 0 8px;">Bedankt{{ successName }} — we hebben je aanvraag binnen.</p>
+      <p style="font-size:17px;color:#8A9A95;margin:0 0 34px;">Je hoort <strong style="color:#EAF2EF;">binnen één werkdag</strong> van ons met een offerte op maat{{ successProduct }}.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+        <a href="LEDsation Landing.dc.html" style="padding:15px 28px;border-radius:100px;background:linear-gradient(120deg,#2DF5A6,#1FD8E6);color:#06090A;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;text-decoration:none;">Terug naar home</a>
+        <a href="LEDsation Assortiment.dc.html" style="padding:15px 28px;border-radius:100px;border:1px solid rgba(255,255,255,0.16);color:#EAF2EF;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:16px;text-decoration:none;">Bekijk assortiment</a>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- FOOTER -->
+  <footer style="border-top:1px solid rgba(255,255,255,0.07);">
+    <div style="max-width:1080px;margin:0 auto;padding:40px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;">
+      <a href="LEDsation Landing.dc.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+        <dc-import name="Mark" size="26" hint-size="26px,26px"></dc-import>
+        <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;color:#EAF2EF;"><span style="background:linear-gradient(120deg,#2DF5A6,#1FD8E6);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">LED</span>sation</span>
+      </a>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.1em;color:#3A4642;">© 2026 LEDsation · LED Wall Verhuur · Nederland</div>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.nameRef = React.createRef();
+    this.emailRef = React.createRef();
+    // ── VERZENDINSTELLING (EmailJS) ──────────────────────────────────────
+    // 1. Maak een gratis account op emailjs.com.
+    // 2. Voeg een e-maildienst toe (Email Services) → dat geeft de SERVICE ID.
+    // 3. Maak een template (Email Templates), plak daarin de HTML uit
+    //    "email/LEDsation Offerte E-mail.html", zet "To" = hulya@drukbaas.nl
+    //    en "Reply-To" = {{reply_email}} → dat geeft de TEMPLATE ID.
+    // 4. Account → API Keys geeft de PUBLIC KEY.
+    // Plak die drie hieronder. Zolang er "VERVANG_MIJ" staat, valt het
+    // formulier terug op de mailclient (mailto) van de bezoeker.
+    this.EMAILJS_PUBLIC_KEY = "k9bh-MZjONBtW3HZy";
+    this.EMAILJS_SERVICE_ID = "service_pmf051l";
+    this.EMAILJS_TEMPLATE_ID = "template_htyxg98";
+    this.FALLBACK_EMAIL = "hulya@drukbaas.nl";
+    // ─────────────────────────────────────────────────────────────────────
+    this.state = {
+      submitted: false,
+      sending: false,
+      error: "",
+      selectedProduct: "",
+      f: { eventType: "", date: "", dateEnd: "", location: "", indoor: "", notes: "", name: "", company: "", email: "", phone: "" },
+      touched: false,
+      availability: [],
+      availLoaded: false,
+    };
+  }
+
+  componentDidMount() {
+    this.fetchAvailability();
+    // Always start fresh on the form for a new page visit (state may be
+    // restored across reloads by the runtime — reset so a returning
+    // visitor never gets stuck on the success screen). Delayed reset also
+    // catches a restore that lands just after mount.
+    this.setState({ submitted: false, error: "", touched: false });
+    setTimeout(() => { if (this.state.submitted) this.setState({ submitted: false, error: "", touched: false }); }, 40);
+    // preselect product from ?p= (coming from a product page)
+    try {
+      const pid = new URLSearchParams(window.location.search).get("p");
+      if (pid) {
+        const wait = () => {
+          const list = window.LEDSATION_PRODUCTS || [];
+          const prod = list.find((x) => x.id === pid);
+          if (prod) { this.setState({ selectedProduct: prod.name }); }
+          else if (list.length === 0) { setTimeout(wait, 60); }
+        };
+        wait();
+      } else if (!(window.LEDSATION_PRODUCTS || []).length) {
+        this._t = setInterval(() => { if ((window.LEDSATION_PRODUCTS || []).length) { clearInterval(this._t); this.forceUpdate(); } }, 60);
+      }
+    } catch (e) {}
+  }
+  componentWillUnmount() { if (this._t) clearInterval(this._t); }
+
+  parseISO(s) { if (!s) return null; const p = String(s).split("T")[0].split("-").map(Number); if (p.length < 3 || !p[0]) return null; return new Date(p[0], p[1] - 1, p[2]); }
+
+  fmtRange(a, b) {
+    const M = ["jan", "feb", "mrt", "apr", "mei", "jun", "jul", "aug", "sep", "okt", "nov", "dec"];
+    const d1 = a.getDate(), m1 = a.getMonth(), d2 = b.getDate(), m2 = b.getMonth();
+    if (a.getTime() === b.getTime()) return d1 + " " + M[m1];
+    if (m1 === m2) return d1 + "–" + d2 + " " + M[m1];
+    return d1 + " " + M[m1] + " – " + d2 + " " + M[m2];
+  }
+
+  fetchAvailability() {
+    // Leest de goedgekeurde boekingen (alleen product + datums) uit de publieke
+    // "beschikbaarheid"-weergave, zodat we kunnen tonen wat vrij is.
+    try {
+      const sb = window.getLedsationSupabase && window.getLedsationSupabase();
+      if (!sb) return;
+      const cfg = window.LEDSATION_SUPABASE || {};
+      sb.from(cfg.availabilityView || "beschikbaarheid").select("product,event_start,event_end").then((res) => {
+        if (res && res.error) { console.warn("Beschikbaarheid:", res.error.message); return; }
+        if (Array.isArray(res.data)) {
+          const av = res.data.map((r) => {
+            const s = this.parseISO(r.event_start); const e = this.parseISO(r.event_end) || s;
+            return s ? { product: r.product, s: s.getTime(), e: (e || s).getTime() } : null;
+          }).filter(Boolean);
+          this.setState({ availability: av, availLoaded: true });
+        }
+      });
+    } catch (e) { console.warn(e); }
+  }
+
+  availabilityInfo() {
+    const S = this.state;
+    const prod = S.selectedProduct;
+    const realProduct = prod && prod !== "Weet ik nog niet";
+    if (!realProduct || !S.f.date || !S.availLoaded) return { state: "none" };
+    const s = this.parseISO(S.f.date); if (!s) return { state: "none" };
+    const e = this.parseISO(S.f.dateEnd) || s;
+    const s1 = s.getTime(), e1 = e.getTime();
+    if (e1 < s1) return { state: "none" };
+    const overlaps = (b) => s1 <= b.e && b.s <= e1;
+    const conflict = S.availability.some((b) => b.product === prod && overlaps(b));
+    const rangeLabel = this.fmtRange(s, e);
+    if (!conflict) return { state: "ok", rangeLabel };
+    const all = (window.LEDSATION_PRODUCTS || []).map((p) => p.name);
+    const alternatives = all.filter((n) => n !== prod && !S.availability.some((b) => b.product === n && overlaps(b)));
+    return { state: "conflict", conflictProduct: prod, rangeLabel, alternatives };
+  }
+
+  updateField = (key, e) => {
+    const v = e && e.target ? e.target.value : e;
+    this.setState((s) => ({ f: { ...s.f, [key]: v } }));
+  };
+
+  buildSetField() {
+    const keys = ["eventType", "date", "dateEnd", "location", "indoor", "notes", "name", "company", "email", "phone"];
+    const obj = {};
+    keys.forEach((k) => { obj[k] = (e) => this.updateField(k, e); });
+    return obj;
+  }
+
+  pickProduct = (name) => this.setState({ selectedProduct: name, error: "" });
+
+  onSubmit = (e) => {
+    if (e && e.preventDefault) e.preventDefault();
+    if (this.state.sending) return;
+    // Prefer live DOM values so validation is never out of sync with what
+    // the visitor actually sees in the fields.
+    const liveName = this.nameRef.current ? this.nameRef.current.value : "";
+    const liveEmail = this.emailRef.current ? this.emailRef.current.value : "";
+    const name = liveName || this.state.f.name;
+    const email = liveEmail || this.state.f.email;
+    // keep state in sync with what we validated
+    if (name !== this.state.f.name || email !== this.state.f.email) {
+      this.setState((s) => ({ f: { ...s.f, name, email } }));
+    }
+    if (!name.trim() || !email.trim()) {
+      this.setState({ touched: true, error: "Vul je naam en e-mailadres in zodat we contact kunnen opnemen." });
+      return;
+    }
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.trim())) {
+      this.setState({ touched: true, error: "Controleer je e-mailadres — dit lijkt niet te kloppen." });
+      return;
+    }
+    const av = this.availabilityInfo();
+    if (av.state === "conflict") {
+      this.setState({ error: av.conflictProduct + " is al verhuurd op de gekozen datums. Kies een andere datum of een beschikbaar alternatief hieronder." });
+      return;
+    }
+    this.sendRequest(name.trim(), email.trim());
+  };
+
+  buildParams(name, email) {
+    const f = this.state.f;
+    const product = this.state.selectedProduct || "Nog niet gekozen";
+    // Sleutels zonder spaties/tekens — zo verwacht EmailJS ze in de template.
+    return {
+      subject: "Offerteaanvraag" + (name ? " – " + name : "") + (product !== "Nog niet gekozen" ? " (" + product + ")" : ""),
+      product: product,
+      event_type: f.eventType || "—",
+      event_date: f.date || "—",
+      location: f.location || "—",
+      indoor: f.indoor || "—",
+      notes: f.notes || "—",
+      name: name,
+      company: f.company || "—",
+      reply_email: email,
+      phone: f.phone || "—",
+    };
+  }
+
+  isConfigured() {
+    return [this.EMAILJS_PUBLIC_KEY, this.EMAILJS_SERVICE_ID, this.EMAILJS_TEMPLATE_ID]
+      .every((v) => v && v.indexOf("VERVANG_MIJ") === -1);
+  }
+
+  saveToSupabase(name, email) {
+    // Schrijft de aanvraag naar de gedeelde opslag zodat die in het dashboard
+    // verschijnt. Stil overslaan als Supabase nog niet is ingesteld.
+    try {
+      const sb = window.getLedsationSupabase && window.getLedsationSupabase();
+      if (!sb) return;
+      const cfg = window.LEDSATION_SUPABASE || {};
+      const f = this.state.f;
+      sb.from(cfg.table || "aanvragen").insert({
+        name: name,
+        email: email,
+        company: f.company || null,
+        phone: f.phone || null,
+        product: this.state.selectedProduct || "Nog niet gekozen",
+        event_type: f.eventType || null,
+        event_start: f.date || null,
+        event_end: f.dateEnd || null,
+        location: f.location || null,
+        indoor: f.indoor || null,
+        notes: f.notes || null,
+        status: "pending",
+      }).then((res) => { if (res && res.error) console.warn("Supabase insert:", res.error.message); });
+    } catch (e) { console.warn(e); }
+  }
+
+  sendRequest(name, email) {
+    // Sla altijd op in het dashboard (indien gekoppeld), náást de e-mail.
+    this.saveToSupabase(name, email);
+    if (!this.isConfigured() || typeof window.emailjs === "undefined") {
+      // Nog geen EmailJS ingesteld (of SDK niet geladen) → mailclient als terugval.
+      this.sendViaMailto(name, email);
+      this.setState({ submitted: true, error: "" });
+      try { window.scrollTo(0, 0); } catch (err) {}
+      return;
+    }
+    this.setState({ sending: true, error: "" });
+    const params = this.buildParams(name, email);
+    window.emailjs
+      .send(this.EMAILJS_SERVICE_ID, this.EMAILJS_TEMPLATE_ID, params, { publicKey: this.EMAILJS_PUBLIC_KEY })
+      .then(() => {
+        this.setState({ sending: false, submitted: true, error: "" });
+        try { window.scrollTo(0, 0); } catch (err) {}
+      })
+      .catch(() => {
+        // Netwerk-/dienstfout → terugval op mailclient, zodat de aanvraag
+        // nooit verloren gaat.
+        this.sendViaMailto(name, email);
+        this.setState({ sending: false, submitted: true, error: "" });
+        try { window.scrollTo(0, 0); } catch (err) {}
+      });
+  }
+
+  sendViaMailto(name, email) {
+    const f = this.state.f;
+    const product = this.state.selectedProduct || "Nog niet gekozen";
+    const line = (label, val) => (val && String(val).trim() ? label + ": " + val + "\n" : "");
+    const body =
+      "Nieuwe offerteaanvraag via ledsation.nl\n" +
+      "----------------------------------------\n\n" +
+      "GEWENST SCHERM\n" +
+      line("Product", product) + "\n" +
+      "EVENEMENT\n" +
+      line("Type", f.eventType) +
+      line("Datum", f.date) +
+      line("Locatie", f.location) +
+      line("Binnen/buiten", f.indoor) + "\n" +
+      "OPMERKINGEN\n" +
+      line("Opmerkingen", f.notes) + "\n" +
+      "CONTACT\n" +
+      line("Naam", name) +
+      line("Bedrijf", f.company) +
+      line("E-mail", email) +
+      line("Telefoon", f.phone);
+    const subject = "Offerteaanvraag" + (name ? " – " + name : "") + (product !== "Nog niet gekozen" ? " (" + product + ")" : "");
+    const url = "mailto:" + this.FALLBACK_EMAIL + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+    try { window.location.href = url; } catch (err) {}
+  }
+
+  renderVals() {
+    const S = this.state;
+    const all = window.LEDSATION_PRODUCTS || [];
+    const inputBase = {
+      background: "#06090A", border: "1px solid rgba(255,255,255,0.12)", borderRadius: "11px",
+      padding: "13px 15px", color: "#EAF2EF", fontFamily: "'Hanken Grotesk',sans-serif",
+      fontSize: "15px", width: "100%", transition: "border-color .15s",
+    };
+    const invalid = { ...inputBase, border: "1px solid rgba(255,122,122,0.55)" };
+    const missing = (v) => S.touched && !String(v || "").trim();
+    const badEmail = S.touched && S.f.email.trim() && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(S.f.email.trim());
+
+    const chipStyle = (active) => ({
+      display: "flex", flexDirection: "column", gap: "3px", padding: "13px 15px",
+      borderRadius: "13px", cursor: "pointer", textAlign: "left",
+      border: "1px solid " + (active ? "rgba(45,245,166,0.5)" : "rgba(255,255,255,0.1)"),
+      background: active ? "rgba(45,245,166,0.1)" : "#06090A",
+      transition: "all .14s",
+    });
+    const productChips = all.map((p) => ({
+      name: p.name, category: p.category.split(" · ")[0] === "BINNEN" ? "Binnen" : (p.category.split(" · ")[0] === "BUITEN" ? "Buiten" : "Creatief"),
+      onClick: () => this.pickProduct(p.name),
+      style: chipStyle(S.selectedProduct === p.name),
+    }));
+
+    const successName = S.f.name.trim() ? ", " + S.f.name.trim().split(" ")[0] : "";
+    const successProduct = S.selectedProduct && S.selectedProduct !== "Weet ik nog niet" ? " voor de " + S.selectedProduct : "";
+
+    const av = this.availabilityInfo();
+    const availAlternatives = (av.alternatives || []).map((n) => ({ name: n, onPick: () => this.pickProduct(n) }));
+    const todayISO = new Date().toISOString().split("T")[0];
+
+    return {
+      showForm: !S.submitted,
+      showSuccess: S.submitted,
+      f: S.f,
+      setField: this.buildSetField(),
+      onSubmit: this.onSubmit,
+      onPickUnsure: () => this.pickProduct("Weet ik nog niet"),
+      productChips,
+      unsureStyle: chipStyle(S.selectedProduct === "Weet ik nog niet"),
+      inputStyle: inputBase,
+      textareaStyle: { ...inputBase, resize: "vertical", minHeight: "84px", fontFamily: "'Hanken Grotesk',sans-serif" },
+      nameStyle: missing(S.f.name) ? invalid : inputBase,
+      emailStyle: (missing(S.f.email) || badEmail) ? invalid : inputBase,
+      hasError: !!S.error,
+      errorMsg: S.error,
+      successName,
+      successProduct,
+      todayISO,
+      availOk: av.state === "ok",
+      availConflict: av.state === "conflict",
+      availMessage: av.state === "ok" ? (S.selectedProduct + " is beschikbaar (" + av.rangeLabel + ").") : "",
+      availConflictMsg: av.state === "conflict" ? (av.conflictProduct + " is al verhuurd op " + av.rangeLabel + ".") : "",
+      availAlternatives,
+      availHasAlts: av.state === "conflict" && availAlternatives.length > 0,
+      availNoAlts: av.state === "conflict" && availAlternatives.length === 0,
+      sending: S.sending,
+      submitLabel: S.sending ? "Versturen…" : "Verstuur aanvraag →",
+      submitStyle: {
+        width: "100%", padding: "17px", border: "none", borderRadius: "13px",
+        background: "linear-gradient(120deg,#2DF5A6,#1FD8E6)", color: "#06090A",
+        fontFamily: "'Space Grotesk',sans-serif", fontWeight: 700, fontSize: "17px",
+        cursor: S.sending ? "wait" : "pointer", opacity: S.sending ? 0.7 : 1,
+        boxShadow: "0 0 34px rgba(45,245,166,0.32)", transition: "opacity .15s",
+      },
+    };
+  }
+}
+</script>
+</body>
+</html>

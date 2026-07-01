@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>LEDsation — offerteaanvraag</title>
+</head>
+<!--
+  LEDsation — gebrande HTML-mail voor offerteaanvragen.
+  Gebruik: plak de <body>-inhoud als custom email-template in je mailservice
+  (EmailJS, Formspree betaald, Mailgun, enz.). Vervang de {{velden}} door de
+  merge-tags van die dienst. Host ledsation-email-header.png op een vaste URL
+  (bv. https://ledsation.nl/ledsation-email-header.png) en zet die in de src.
+-->
+<body style="margin:0;padding:0;background:#06090A;">
+  <!-- preheader (verborgen samenvatting in inbox-preview) -->
+  <div style="display:none;max-height:0;overflow:hidden;opacity:0;">Nieuwe offerteaanvraag via ledsation.nl</div>
+
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#06090A;padding:28px 12px;">
+    <tr>
+      <td align="center">
+        <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px;max-width:600px;background:#0B0F11;border:1px solid rgba(255,255,255,0.08);border-radius:20px;overflow:hidden;font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
+
+          <!-- HEADER met logo -->
+          <tr>
+            <td style="padding:0;background:#0B0F11;">
+              <img src="ledsation-email-header.png" width="600" alt="LEDsation" style="display:block;width:100%;max-width:600px;height:auto;border:0;">
+            </td>
+          </tr>
+
+          <!-- accent lijn -->
+          <tr><td style="height:4px;background:linear-gradient(90deg,#2DF5A6,#1FD8E6);font-size:0;line-height:0;">&nbsp;</td></tr>
+
+          <!-- TITEL -->
+          <tr>
+            <td style="padding:34px 40px 8px;">
+              <div style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#2DF5A6;font-weight:700;">Nieuwe offerteaanvraag</div>
+              <div style="font-size:26px;font-weight:700;color:#EAF2EF;margin-top:8px;line-height:1.2;">Er is een aanvraag binnengekomen</div>
+              <div style="font-size:15px;color:#8A9A95;margin-top:8px;">Via het offerteformulier op ledsation.nl</div>
+            </td>
+          </tr>
+
+          <!-- GEWENST SCHERM -->
+          <tr>
+            <td style="padding:22px 40px 0;">
+              <div style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#5A6B66;font-weight:700;padding-bottom:8px;">Gewenst scherm</div>
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid rgba(255,255,255,0.08);border-radius:12px;">
+                <tr>
+                  <td style="padding:14px 16px;color:#8A9A95;font-size:14px;width:42%;">Product</td>
+                  <td style="padding:14px 16px;color:#EAF2EF;font-size:15px;font-weight:600;">{{product}}</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- EVENEMENT -->
+          <tr>
+            <td style="padding:22px 40px 0;">
+              <div style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#5A6B66;font-weight:700;padding-bottom:8px;">Evenement</div>
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid rgba(255,255,255,0.08);border-radius:12px;">
+                <tr>
+                  <td style="padding:13px 16px;color:#8A9A95;font-size:14px;width:42%;border-bottom:1px solid rgba(255,255,255,0.06);">Type evenement</td>
+                  <td style="padding:13px 16px;color:#EAF2EF;font-size:15px;border-bottom:1px solid rgba(255,255,255,0.06);">{{event_type}}</td>
+                </tr>
+                <tr>
+                  <td style="padding:13px 16px;color:#8A9A95;font-size:14px;border-bottom:1px solid rgba(255,255,255,0.06);">Datum</td>
+                  <td style="padding:13px 16px;color:#EAF2EF;font-size:15px;border-bottom:1px solid rgba(255,255,255,0.06);">{{event_date}}</td>
+                </tr>
+                <tr>
+                  <td style="padding:13px 16px;color:#8A9A95;font-size:14px;border-bottom:1px solid rgba(255,255,255,0.06);">Locatie</td>
+                  <td style="padding:13px 16px;color:#EAF2EF;font-size:15px;border-bottom:1px solid rgba(255,255,255,0.06);">{{location}}</td>
+                </tr>
+                <tr>
+                  <td style="padding:13px 16px;color:#8A9A95;font-size:14px;">Binnen/buiten</td>
+                  <td style="padding:13px 16px;color:#EAF2EF;font-size:15px;">{{indoor}}</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- SCHERM -->
+          <tr>
+            <td style="padding:22px 40px 0;">
+              <div style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#5A6B66;font-weight:700;padding-bottom:8px;">Scherm</div>
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid rgba(255,255,255,0.08);border-radius:12px;">
+                <tr>
+                  <td style="padding:13px 16px;color:#8A9A95;font-size:14px;width:42%;border-bottom:1px solid rgba(255,255,255,0.06);">Gewenst formaat</td>
+                  <td style="padding:13px 16px;color:#EAF2EF;font-size:15px;border-bottom:1px solid rgba(255,255,255,0.06);">{{screen_size}}</td>
+                </tr>
+                <tr>
+                  <td style="padding:13px 16px;color:#8A9A95;font-size:14px;border-bottom:1px solid rgba(255,255,255,0.06);">Huurperiode</td>
+                  <td style="padding:13px 16px;color:#EAF2EF;font-size:15px;border-bottom:1px solid rgba(255,255,255,0.06);">{{period}}</td>
+                </tr>
+                <tr>
+                  <td style="padding:13px 16px;color:#8A9A95;font-size:14px;vertical-align:top;">Toelichting</td>
+                  <td style="padding:13px 16px;color:#EAF2EF;font-size:15px;">{{notes}}</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- CONTACT -->
+          <tr>
+            <td style="padding:22px 40px 4px;">
+              <div style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#5A6B66;font-weight:700;padding-bottom:8px;">Contact</div>
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid rgba(45,245,166,0.22);border-radius:12px;background:rgba(45,245,166,0.05);">
+                <tr>
+                  <td style="padding:13px 16px;color:#8A9A95;font-size:14px;width:42%;border-bottom:1px solid rgba(255,255,255,0.06);">Naam</td>
+                  <td style="padding:13px 16px;color:#EAF2EF;font-size:15px;font-weight:600;border-bottom:1px solid rgba(255,255,255,0.06);">{{name}}</td>
+                </tr>
+                <tr>
+                  <td style="padding:13px 16px;color:#8A9A95;font-size:14px;border-bottom:1px solid rgba(255,255,255,0.06);">Bedrijf</td>
+                  <td style="padding:13px 16px;color:#EAF2EF;font-size:15px;border-bottom:1px solid rgba(255,255,255,0.06);">{{company}}</td>
+                </tr>
+                <tr>
+                  <td style="padding:13px 16px;color:#8A9A95;font-size:14px;border-bottom:1px solid rgba(255,255,255,0.06);">E-mail</td>
+                  <td style="padding:13px 16px;font-size:15px;border-bottom:1px solid rgba(255,255,255,0.06);"><a href="mailto:{{reply_email}}" style="color:#2DF5A6;text-decoration:none;font-weight:600;">{{reply_email}}</a></td>
+                </tr>
+                <tr>
+                  <td style="padding:13px 16px;color:#8A9A95;font-size:14px;">Telefoon</td>
+                  <td style="padding:13px 16px;color:#EAF2EF;font-size:15px;">{{phone}}</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- CTA -->
+          <tr>
+            <td style="padding:26px 40px 34px;" align="left">
+              <a href="mailto:{{reply_email}}" style="display:inline-block;background:#2DF5A6;color:#06090A;font-size:15px;font-weight:700;text-decoration:none;padding:14px 28px;border-radius:100px;">Reageer op deze aanvraag →</a>
+            </td>
+          </tr>
+
+          <!-- FOOTER -->
+          <tr>
+            <td style="padding:22px 40px;border-top:1px solid rgba(255,255,255,0.08);background:#080B0C;">
+              <div style="font-size:12px;color:#5A6B66;letter-spacing:1px;">LEDSATION · LED WALL VERHUUR · NEDERLAND</div>
+              <div style="font-size:12px;color:#3A4642;margin-top:6px;">Deze e-mail is automatisch verstuurd vanaf het offerteformulier op ledsation.nl</div>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

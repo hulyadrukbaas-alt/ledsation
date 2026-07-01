@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(4,1fr);width:{{ sizePx }};height:{{ sizePx }};gap:{{ gapPx }}">
+  <sc-for list="{{ cells }}" as="c" hint-placeholder-count="16">
+    <div style="{{ c.style }}"></div>
+  </sc-for>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:120,&quot;height&quot;:120},&quot;size&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:64,&quot;tsType&quot;:&quot;number&quot;,&quot;min&quot;:16,&quot;max&quot;:400,&quot;unit&quot;:&quot;px&quot;},&quot;color&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#2DF5A6&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;dim&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;rgba(255,255,255,0.06)&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;glow&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const size = this.props.size ?? 64;
+    const color = this.props.color ?? "#2DF5A6";
+    const dim = this.props.dim ?? "rgba(255,255,255,0.06)";
+    const glow = this.props.glow ?? true;
+    const lit = new Set([8,12,1,5,9,13,6,10,14,11,15]);
+    const radius = Math.max(1, Math.round(size * 0.035));
+    const cells = Array.from({ length: 16 }, (_, i) => {
+      const on = lit.has(i);
+      return {
+        style: {
+          width: "100%",
+          height: "100%",
+          borderRadius: radius + "px",
+          background: on ? color : dim,
+          boxShadow: on && glow ? `0 0 ${Math.round(size*0.18)}px ${color}66` : "none",
+        },
+      };
+    });
+    return {
+      cells,
+      sizePx: size + "px",
+      gapPx: Math.max(1, Math.round(size * 0.07)) + "px",
+    };
+  }
+}
+</script>
+</body>
+</html>

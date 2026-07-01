@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Sora:wght@600;700;800&family=Chakra+Petch:wght@600;700&family=Archivo:wght@700;800&family=Unbounded:wght@600;700;800&family=Michroma&family=Rajdhani:wght@600;700&family=Orbitron:wght@700;800&family=Outfit:wght@600;700&family=Space+Mono:wght@700&family=Fredoka:wght@500;600;700&family=Syne:wght@700;800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+</helmet>
+
+<div style="width:100%;background:#0B0F11;border:1px solid rgba(255,255,255,0.08);border-radius:22px;padding:32px;display:flex;flex-direction:column;gap:22px;font-family:'Hanken Grotesk',system-ui,sans-serif;color:#EAF2EF;">
+
+  <!-- header -->
+  <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:14px;">
+    <div style="min-width:0;">
+      <div style="{{ nameStyle }}">{{ fontName }}</div>
+      <div style="font-size:14px;color:#8A9A95;margin-top:3px;">{{ desc }}</div>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0;">
+      <span style="display:inline-flex;align-items:center;justify-content:center;min-width:34px;height:26px;padding:0 9px;border-radius:8px;background:rgba(45,245,166,0.14);color:#2DF5A6;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:13px;">{{ badge }}</span>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#5A6B66;">{{ tag }}</span>
+    </div>
+  </div>
+
+  <!-- LOGO -->
+  <div style="border-top:1px solid rgba(255,255,255,0.06);padding-top:20px;">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#2DF5A6;margin-bottom:16px;">Logo · primair</div>
+    <div style="display:flex;align-items:center;gap:20px;">
+      <dc-import name="Mark" size="52" hint-size="52px,52px"></dc-import>
+      <span style="{{ wordStyle }}"><span style="background:linear-gradient(120deg,#2DF5A6,#1FD8E6);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">LED</span>sation</span>
+    </div>
+
+    <!-- varianten -->
+    <div style="margin-top:20px;display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+      <!-- Gestapeld -->
+      <div style="background:#06090A;border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;min-height:132px;">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:9px;">
+          <dc-import name="Mark" size="34" hint-size="34px,34px"></dc-import>
+          <span style="{{ wordStyleStack }}"><span style="background:linear-gradient(120deg,#2DF5A6,#1FD8E6);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">LED</span>sation</span>
+        </div>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#5A6B66;">Gestapeld</span>
+      </div>
+      <!-- Mono wit -->
+      <div style="background:#06090A;border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;min-height:132px;">
+        <div style="display:flex;align-items:center;gap:11px;">
+          <dc-import name="Mark" size="30" color="#EAF2EF" dim="rgba(234,242,239,0.14)" glow="{{ false }}" hint-size="30px,30px"></dc-import>
+          <span style="{{ wordStyleWhite }}">LEDsation</span>
+        </div>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#5A6B66;">Mono wit</span>
+      </div>
+      <!-- Op licht -->
+      <div style="grid-column:1 / -1;background:#EAF2EF;border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;min-height:110px;">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <dc-import name="Mark" size="30" color="#0B0F11" dim="rgba(0,0,0,0.08)" glow="{{ false }}" hint-size="30px,30px"></dc-import>
+          <span style="{{ wordStyleLight }}">LEDsation</span>
+        </div>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#7A8A85;">Op licht</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- TYPOGRAFIE -->
+  <div style="border-top:1px solid rgba(255,255,255,0.06);padding-top:20px;">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#2DF5A6;margin-bottom:14px;">Kop &amp; specimen</div>
+    <div style="{{ headingStyle }}">Elke ruimte een sensatie.</div>
+    <div style="{{ specimenStyle }}">Aa Bb Cc — 0123456789</div>
+  </div>
+
+  <!-- TOEPASSING -->
+  <div style="border-top:1px solid rgba(255,255,255,0.06);padding-top:20px;">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#2DF5A6;margin-bottom:14px;">Toepassing</div>
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+      <span style="{{ buttonStyle }}">Offerte aanvragen</span>
+      <span style="padding:8px 15px;border-radius:100px;border:1px solid rgba(255,255,255,0.14);font-size:13px;color:#A9B7B2;">Corporate</span>
+      <span style="padding:8px 15px;border-radius:100px;border:1px solid rgba(255,255,255,0.14);font-size:13px;color:#A9B7B2;">Festival</span>
+    </div>
+    <!-- mini business card -->
+    <div style="margin-top:16px;border-radius:14px;background:linear-gradient(150deg,#0E1517,#06090A);border:1px solid rgba(255,255,255,0.08);padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:14px;overflow:hidden;position:relative;">
+      <div style="position:absolute;top:-30px;right:-30px;width:130px;height:130px;background:radial-gradient(circle,rgba(45,245,166,0.16),transparent 70%);"></div>
+      <div style="display:flex;align-items:center;gap:11px;position:relative;">
+        <dc-import name="Mark" size="28" hint-size="28px,28px"></dc-import>
+        <span style="{{ wordStyleSmall }}"><span style="background:linear-gradient(120deg,#2DF5A6,#1FD8E6);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">LED</span>sation</span>
+      </div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#8A9A95;line-height:1.8;text-align:right;position:relative;">
+        <div>hulya@drukbaas.nl</div>
+        <div>ledsation.nl</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:540,&quot;height&quot;:640},&quot;badge&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;1a&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;tag&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Stijl&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;fontName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Space Grotesk&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;fontFamily&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;'Space Grotesk',sans-serif&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;weight&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:700,&quot;tsType&quot;:&quot;number&quot;},&quot;wordSize&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:46,&quot;tsType&quot;:&quot;number&quot;},&quot;tracking&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;-0.02em&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;desc&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const p = this.props;
+    const fam = p.fontFamily || "'Space Grotesk',sans-serif";
+    const wght = Number(p.weight || 700);
+    const tr = p.tracking || "-0.02em";
+    const wordSize = Number(p.wordSize || 46);
+    return {
+      badge: p.badge || "",
+      tag: p.tag || "",
+      fontName: p.fontName || "",
+      desc: p.desc || "",
+      nameStyle: { fontFamily: fam, fontWeight: wght, fontSize: "20px", letterSpacing: tr, color: "#EAF2EF", lineHeight: 1.1 },
+      wordStyle: { fontFamily: fam, fontWeight: wght, fontSize: wordSize + "px", letterSpacing: tr, lineHeight: 1 },
+      wordStyleSmall: { fontFamily: fam, fontWeight: wght, fontSize: "22px", letterSpacing: tr, lineHeight: 1 },
+      wordStyleStack: { fontFamily: fam, fontWeight: wght, fontSize: "20px", letterSpacing: tr, lineHeight: 1 },
+      wordStyleWhite: { fontFamily: fam, fontWeight: wght, fontSize: "22px", letterSpacing: tr, lineHeight: 1, color: "#EAF2EF" },
+      wordStyleLight: { fontFamily: fam, fontWeight: wght, fontSize: "21px", letterSpacing: tr, lineHeight: 1, color: "#0B0F11" },
+      headingStyle: { fontFamily: fam, fontWeight: wght, fontSize: "26px", letterSpacing: tr, color: "#EAF2EF", lineHeight: 1.15, margin: 0 },
+      specimenStyle: { fontFamily: fam, fontWeight: wght, fontSize: "30px", color: "#5A6B66", marginTop: "8px" },
+      buttonStyle: {
+        fontFamily: fam, fontWeight: 700, fontSize: "15px",
+        padding: "10px 20px", borderRadius: "100px", color: "#06090A",
+        background: "linear-gradient(120deg,#2DF5A6,#1FD8E6)",
+        boxShadow: "0 0 24px rgba(45,245,166,0.28)",
+        display: "inline-block",
+      },
+    };
+  }
+}
+</script>
+</body>
+</html>

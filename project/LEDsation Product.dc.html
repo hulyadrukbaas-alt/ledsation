@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="products.js"></script>
+  <style>
+    *{box-sizing:border-box;}
+    html,body{margin:0;padding:0;background:#06090A;scroll-behavior:smooth;}
+    ::selection{background:#2DF5A6;color:#06090A;}
+    @keyframes ledpulse{0%,100%{opacity:.5;}50%{opacity:1;}}
+    a{color:inherit;}
+  </style>
+</helmet>
+
+<div style="background:#06090A;color:#EAF2EF;font-family:'Hanken Grotesk',system-ui,sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100%;overflow-x:hidden;">
+
+  <!-- NAV -->
+  <nav style="position:sticky;top:0;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:16px 32px;background:rgba(6,9,10,0.7);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,0.06);">
+    <a href="LEDsation Landing.dc.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+      <dc-import name="Mark" size="28" hint-size="28px,28px"></dc-import>
+      <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:19px;letter-spacing:-0.01em;color:#EAF2EF;"><span style="background:linear-gradient(120deg,#2DF5A6,#1FD8E6);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">LED</span>sation</span>
+    </a>
+    <div style="display:flex;align-items:center;gap:32px;">
+      <div style="display:flex;gap:28px;font-size:15px;color:#A9B7B2;">
+        <a href="LEDsation Landing.dc.html" style="text-decoration:none;">Home</a>
+        <a href="LEDsation Assortiment.dc.html" style="text-decoration:none;color:#2DF5A6;">Assortiment</a>
+        <a href="LEDsation Landing.dc.html#projecten" style="text-decoration:none;">Projecten</a>
+      </div>
+      <a href="LEDsation Offerte.dc.html" style="padding:11px 22px;border-radius:100px;background:linear-gradient(120deg,#2DF5A6,#1FD8E6);color:#06090A;font-weight:700;font-size:15px;text-decoration:none;box-shadow:0 0 24px rgba(45,245,166,0.3);">Offerte aanvragen</a>
+    </div>
+  </nav>
+
+  <!-- FOUND -->
+  <sc-if value="{{ found }}" hint-placeholder-val="{{ true }}">
+    <div>
+      <!-- breadcrumb -->
+      <div style="max-width:1180px;margin:0 auto;padding:26px 32px 0;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.08em;color:#5A6B66;">
+        <a href="LEDsation Landing.dc.html" style="text-decoration:none;color:#5A6B66;">HOME</a> &nbsp;/&nbsp;
+        <a href="LEDsation Assortiment.dc.html" style="text-decoration:none;color:#5A6B66;">ASSORTIMENT</a> &nbsp;/&nbsp;
+        <span style="color:#2DF5A6;">{{ upperName }}</span>
+      </div>
+
+      <!-- HERO -->
+      <header style="max-width:1180px;margin:0 auto;padding:28px 32px 40px;">
+        <div style="display:grid;grid-template-columns:1.05fr 0.95fr;gap:44px;align-items:stretch;">
+          <!-- image -->
+          <div style="position:relative;border-radius:22px;overflow:hidden;border:1px solid rgba(255,255,255,0.08);background:repeating-linear-gradient(45deg,#111A1C,#111A1C 14px,#0E1517 14px,#0E1517 28px);min-height:380px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 80px rgba(45,245,166,0.12);">
+            <sc-if value="{{ hasImg }}" hint-placeholder-val="{{ false }}">
+              <div role="img" aria-label="{{ product.name }}" style="{{ imgStyle }}"></div>
+            </sc-if>
+            <sc-if value="{{ noImg }}" hint-placeholder-val="{{ true }}">
+              <div style="position:absolute;inset:0;background:radial-gradient(circle at 60% 40%,{{ glow }},transparent 65%);"></div>
+              <div style="text-align:center;position:relative;">
+                <div style="display:flex;justify-content:center;margin-bottom:14px;"><dc-import name="Mark" size="64" hint-size="64px,64px"></dc-import></div>
+                <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.16em;color:#5A6B66;">PRODUCTFOTO</div>
+              </div>
+            </sc-if>
+            <span style="position:absolute;top:16px;left:16px;padding:6px 13px;border-radius:100px;background:rgba(6,9,10,0.72);backdrop-filter:blur(6px);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em;color:{{ tagColor }};">{{ product.category }}</span>
+          </div>
+          <!-- info -->
+          <div style="display:flex;flex-direction:column;">
+            <div style="display:flex;align-items:center;gap:14px;margin-bottom:8px;">
+              <h1 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(38px,5vw,58px);letter-spacing:-0.03em;margin:0;line-height:1;">{{ product.name }}</h1>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:14px;color:#2DF5A6;padding:4px 10px;border:1px solid rgba(45,245,166,0.3);border-radius:8px;">{{ product.pitch }}</span>
+            </div>
+            <p style="font-size:18px;color:#A9B7B2;margin:14px 0 24px;">{{ product.long }}</p>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px;">
+              <sc-for list="{{ uses }}" as="u" hint-placeholder-count="3">
+                <span style="padding:6px 14px;border-radius:100px;border:1px solid rgba(255,255,255,0.12);font-size:13px;color:#A9B7B2;">{{ u.label }}</span>
+              </sc-for>
+            </div>
+            <sc-if value="{{ hasPrice }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;align-items:baseline;gap:10px;padding:16px 0;margin-bottom:22px;border-top:1px solid rgba(255,255,255,0.08);border-bottom:1px solid rgba(255,255,255,0.08);">
+                <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:30px;letter-spacing:-0.02em;color:#2DF5A6;">{{ product.price }}</span>
+                <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#8A9A95;">{{ product.priceUnit }}</span>
+                <span style="margin-left:auto;font-size:13px;color:#5A6B66;">excl. btw · incl. opbouw</span>
+              </div>
+            </sc-if>
+            <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:auto;">
+              <a href="{{ offerteHref }}" style="padding:15px 28px;border-radius:100px;background:linear-gradient(120deg,#2DF5A6,#1FD8E6);color:#06090A;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;text-decoration:none;box-shadow:0 0 34px rgba(45,245,166,0.32);">Offerte aanvragen →</a>
+              <a href="LEDsation Assortiment.dc.html" style="padding:15px 28px;border-radius:100px;border:1px solid rgba(255,255,255,0.16);color:#EAF2EF;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:16px;text-decoration:none;">← Terug naar assortiment</a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- SPECS + FEATURES -->
+      <section style="max-width:1180px;margin:0 auto;padding:20px 32px 40px;display:grid;grid-template-columns:1fr 1fr;gap:22px;">
+        <!-- specs -->
+        <div style="background:#0B0F11;border:1px solid rgba(255,255,255,0.07);border-radius:20px;padding:30px;">
+          <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:19px;margin:0 0 20px;">Specificaties</h2>
+          <div style="display:flex;flex-direction:column;">
+            <sc-for list="{{ specs }}" as="s" hint-placeholder-count="6">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
+                <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#8A9A95;">{{ s.k }}</span>
+                <span style="font-size:15px;font-weight:600;text-align:right;">{{ s.v }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <!-- features -->
+        <div style="background:linear-gradient(160deg,#0E1A16,#0B0F11);border:1px solid rgba(45,245,166,0.16);border-radius:20px;padding:30px;">
+          <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:19px;margin:0 0 20px;">Kenmerken</h2>
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <sc-for list="{{ features }}" as="f" hint-placeholder-count="4">
+              <div style="display:flex;gap:13px;align-items:flex-start;">
+                <span style="flex-shrink:0;width:22px;height:22px;border-radius:7px;background:rgba(45,245,166,0.14);color:#2DF5A6;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;margin-top:2px;">✓</span>
+                <span style="font-size:16px;color:#D6E2DE;">{{ f.label }}</span>
+              </div>
+            </sc-for>
+          </div>
+          <sc-if value="{{ hasSource }}" hint-placeholder-val="{{ false }}">
+            <a href="{{ product.source }}" target="_blank" rel="noopener" style="display:inline-block;margin-top:24px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#5A6B66;text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.12);">↗ Technische bron</a>
+          </sc-if>
+        </div>
+      </section>
+
+      <!-- RELATED -->
+      <section style="max-width:1180px;margin:0 auto;padding:20px 32px 40px;">
+        <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:22px;margin:0 0 20px;letter-spacing:-0.01em;">Ook interessant</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px;">
+          <sc-for list="{{ related }}" as="r" hint-placeholder-count="3">
+            <a href="{{ r.href }}" style="background:#0B0F11;border:1px solid rgba(255,255,255,0.07);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;text-decoration:none;color:inherit;transition:border-color .15s,transform .15s;" style-hover="border-color:rgba(45,245,166,0.4);transform:translateY(-3px);">
+              <div style="position:relative;aspect-ratio:16/10;background:repeating-linear-gradient(45deg,#111A1C,#111A1C 12px,#0E1517 12px,#0E1517 24px);display:flex;align-items:center;justify-content:center;overflow:hidden;">
+                <sc-if value="{{ r.hasImg }}" hint-placeholder-val="{{ false }}">
+                  <div role="img" aria-label="{{ r.name }}" style="{{ r.imgStyle }}"></div>
+                </sc-if>
+                <sc-if value="{{ r.noImg }}" hint-placeholder-val="{{ true }}">
+                  <div style="position:absolute;inset:0;background:radial-gradient(circle at 70% 30%,{{ r.glow }},transparent 65%);"></div>
+                  <dc-import name="Mark" size="38" hint-size="38px,38px"></dc-import>
+                </sc-if>
+              </div>
+              <div style="padding:16px 18px;display:flex;align-items:center;justify-content:space-between;gap:10px;">
+                <span style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:16px;">{{ r.name }}</span>
+                <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#2DF5A6;">{{ r.pitch }}</span>
+              </div>
+            </a>
+          </sc-for>
+        </div>
+      </section>
+    </div>
+  </sc-if>
+
+  <!-- NOT FOUND -->
+  <sc-if value="{{ notFound }}" hint-placeholder-val="{{ false }}">
+    <div style="max-width:640px;margin:0 auto;padding:120px 32px;text-align:center;">
+      <div style="display:flex;justify-content:center;margin-bottom:24px;"><dc-import name="Mark" size="56" hint-size="56px,56px"></dc-import></div>
+      <h1 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:34px;letter-spacing:-0.02em;margin:0 0 12px;">Product niet gevonden</h1>
+      <p style="color:#8A9A95;margin:0 0 28px;">Dit product bestaat niet (meer). Bekijk het volledige assortiment.</p>
+      <a href="LEDsation Assortiment.dc.html" style="display:inline-block;padding:15px 28px;border-radius:100px;background:linear-gradient(120deg,#2DF5A6,#1FD8E6);color:#06090A;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;text-decoration:none;">Naar het assortiment →</a>
+    </div>
+  </sc-if>
+
+  <!-- FOOTER -->
+  <footer style="border-top:1px solid rgba(255,255,255,0.07);">
+    <div style="max-width:1180px;margin:0 auto;padding:40px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;">
+      <a href="LEDsation Landing.dc.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+        <dc-import name="Mark" size="26" hint-size="26px,26px"></dc-import>
+        <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;color:#EAF2EF;"><span style="background:linear-gradient(120deg,#2DF5A6,#1FD8E6);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">LED</span>sation</span>
+      </a>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.1em;color:#3A4642;">© 2026 LEDsation · LED Wall Verhuur · Nederland</div>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    try {
+      const params = new URLSearchParams(window.location.search);
+      this.pid = params.get("p");
+    } catch (e) { this.pid = null; }
+  }
+
+  componentDidMount() {
+    if (!(window.LEDSATION_PRODUCTS || []).length) {
+      this._t = setInterval(() => {
+        if ((window.LEDSATION_PRODUCTS || []).length) { clearInterval(this._t); this.forceUpdate(); }
+      }, 50);
+    }
+  }
+  componentWillUnmount() { if (this._t) clearInterval(this._t); }
+
+  renderVals() {
+    const all = window.LEDSATION_PRODUCTS || [];
+    const loading = all.length === 0;
+    const product = all.find((p) => p.id === this.pid);
+
+    if (!product) {
+      return { found: false, notFound: !loading, related: [] };
+    }
+
+    const related = all
+      .filter((p) => p.id !== product.id)
+      .slice(0, 3)
+      .map((p) => ({
+        name: p.name, pitch: p.pitch, glow: p.glow,
+        href: "LEDsation Product.dc.html?p=" + p.id,
+        hasImg: !!p.img, noImg: !p.img,
+        imgStyle: p.img ? { position: "absolute", inset: 0, backgroundImage: 'url("' + p.img + '")', backgroundSize: "cover", backgroundPosition: "center" } : null,
+      }));
+
+    return {
+      found: true,
+      notFound: false,
+      product,
+      offerteHref: "LEDsation Offerte.dc.html?p=" + product.id,
+      upperName: product.name.toUpperCase(),
+      tagColor: product.tagColor,
+      glow: product.glow,
+      hasImg: !!product.img,
+      noImg: !product.img,
+      hasSource: !!product.source,
+      hasPrice: !!product.price,
+      imgStyle: product.img ? { position: "absolute", inset: 0, backgroundImage: 'url("' + product.img + '")', backgroundSize: "cover", backgroundPosition: "center" } : null,
+      specs: product.specs.map(([k, v]) => ({ k, v })),
+      features: product.features.map((label) => ({ label })),
+      uses: product.uses.map((label) => ({ label })),
+      related,
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <meta name="design_doc_mode" content="canvas">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Sora:wght@600;700;800&family=Chakra+Petch:wght@600;700&family=Archivo:wght@700;800&family=Unbounded:wght@600;700;800&family=Michroma&family=Rajdhani:wght@600;700&family=Orbitron:wght@700;800&family=Outfit:wght@600;700&family=Space+Mono:wght@700&family=Fredoka:wght@500;600;700&family=Syne:wght@700;800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;}
+    html,body{margin:0;padding:0;background:#06090A;}
+    ::selection{background:#2DF5A6;color:#06090A;}
+  </style>
+</helmet>
+
+<div style="background:#06090A;color:#EAF2EF;font-family:'Hanken Grotesk',system-ui,sans-serif;padding:56px 56px 80px;min-height:100%;">
+
+  <!-- header -->
+  <div style="max-width:820px;margin-bottom:44px;">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+      <dc-import name="Mark" size="30" hint-size="30px,30px"></dc-import>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:#8A9A95;">Logo · mini-brandkits per font</span>
+    </div>
+    <h1 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:38px;letter-spacing:-0.02em;margin:0 0 14px;">Twaalf richtingen, elk als mini-brandkit</h1>
+    <p style="font-size:17px;line-height:1.6;color:#A9B7B2;margin:0;">Zelfde blok-icoon en kleuren; per font zie je meteen het logo (op donker én licht), een kop-voorbeeld met specimen, en een toepassing (knop, chips, visitekaartje). Noem in de chat het label (bijv. <a href="#1c" style="color:#2DF5A6;text-decoration:none;">1c</a> of <a href="#1h" style="color:#2DF5A6;text-decoration:none;">1h</a>) van de richting die je aanspreekt.</p>
+  </div>
+
+  <!-- options grid -->
+  <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:stretch;">
+
+    <div id="1a" style="width:540px;display:flex;">
+      <dc-import name="LogoKit" badge="1a" tag="Huidig" font-name="Space Grotesk" font-family="'Space Grotesk',sans-serif" weight="700" word-size="48" tracking="-0.03em" desc="Geometrisch, gebalanceerd, veilig-modern." hint-size="100%,660px"></dc-import>
+    </div>
+    <div id="1b" style="width:540px;display:flex;">
+      <dc-import name="LogoKit" badge="1b" tag="Zacht" font-name="Sora" font-family="'Sora',sans-serif" weight="800" word-size="46" tracking="-0.03em" desc="Futuristisch-geometrisch, iets zachter en opener." hint-size="100%,660px"></dc-import>
+    </div>
+    <div id="1c" style="width:540px;display:flex;">
+      <dc-import name="LogoKit" badge="1c" tag="Technisch" font-name="Chakra Petch" font-family="'Chakra Petch',sans-serif" weight="700" word-size="46" tracking="-0.01em" desc="Hoekig en technisch — echte AV/screen-uitstraling." hint-size="100%,660px"></dc-import>
+    </div>
+    <div id="1d" style="width:540px;display:flex;">
+      <dc-import name="LogoKit" badge="1d" tag="Bold" font-name="Archivo" font-family="'Archivo',sans-serif" weight="800" word-size="44" tracking="-0.02em" desc="Breed en stevig — maximale impact, dominant." hint-size="100%,660px"></dc-import>
+    </div>
+    <div id="1e" style="width:540px;display:flex;">
+      <dc-import name="LogoKit" badge="1e" tag="Energiek" font-name="Unbounded" font-family="'Unbounded',sans-serif" weight="700" word-size="38" tracking="-0.02em" desc="Rond en expressief — jong, energiek, feestelijk." hint-size="100%,660px"></dc-import>
+    </div>
+    <div id="1f" style="width:540px;display:flex;">
+      <dc-import name="LogoKit" badge="1f" tag="Screen" font-name="Michroma" font-family="'Michroma',sans-serif" weight="400" word-size="30" tracking="-0.01em" desc="Mono-breedte, gelijkmatig — echt ‘beeldscherm’-gevoel." hint-size="100%,660px"></dc-import>
+    </div>
+    <div id="1g" style="width:540px;display:flex;">
+      <dc-import name="LogoKit" badge="1g" tag="Condensed" font-name="Rajdhani" font-family="'Rajdhani',sans-serif" weight="700" word-size="52" tracking="0.01em" desc="Smal en verticaal — sportief, technisch, ruimtebesparend." hint-size="100%,660px"></dc-import>
+    </div>
+    <div id="1h" style="width:540px;display:flex;">
+      <dc-import name="LogoKit" badge="1h" tag="Sci-fi" font-name="Orbitron" font-family="'Orbitron',sans-serif" weight="800" word-size="32" tracking="-0.02em" desc="Futuristisch en digitaal — klassieke LED/scherm-look." hint-size="100%,660px"></dc-import>
+    </div>
+    <div id="1i" style="width:540px;display:flex;">
+      <dc-import name="LogoKit" badge="1i" tag="Clean" font-name="Outfit" font-family="'Outfit',sans-serif" weight="700" word-size="48" tracking="-0.02em" desc="Strak-geometrisch en neutraal — modern en veelzijdig." hint-size="100%,660px"></dc-import>
+    </div>
+    <div id="1j" style="width:540px;display:flex;">
+      <dc-import name="LogoKit" badge="1j" tag="Mono" font-name="Space Mono" font-family="'Space Mono',monospace" weight="700" word-size="40" tracking="-0.04em" desc="Monospace met karakter — techy, retro-digitaal." hint-size="100%,660px"></dc-import>
+    </div>
+    <div id="1k" style="width:540px;display:flex;">
+      <dc-import name="LogoKit" badge="1k" tag="Rond" font-name="Fredoka" font-family="'Fredoka',sans-serif" weight="600" word-size="46" tracking="-0.01em" desc="Zacht en vriendelijk — toegankelijk, warm, feestelijk." hint-size="100%,660px"></dc-import>
+    </div>
+    <div id="1l" style="width:540px;display:flex;">
+      <dc-import name="LogoKit" badge="1l" tag="Expressief" font-name="Syne" font-family="'Syne',sans-serif" weight="800" word-size="44" tracking="-0.02em" desc="Eigenzinnig en design-forward — onderscheidend, creatief." hint-size="100%,660px"></dc-import>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

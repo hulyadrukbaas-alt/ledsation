@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="products.js"></script>
+  <style>
+    *{box-sizing:border-box;}
+    html,body{margin:0;padding:0;background:#06090A;scroll-behavior:smooth;}
+    ::selection{background:#2DF5A6;color:#06090A;}
+    @keyframes ledpulse{0%,100%{opacity:.5;}50%{opacity:1;}}
+    a{color:inherit;}
+  </style>
+</helmet>
+
+<div style="background:#06090A;color:#EAF2EF;font-family:'Hanken Grotesk',system-ui,sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100%;overflow-x:hidden;">
+
+  <!-- NAV -->
+  <nav style="position:sticky;top:0;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:16px 32px;background:rgba(6,9,10,0.7);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,0.06);">
+    <a href="LEDsation Landing.dc.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+      <dc-import name="Mark" size="28" hint-size="28px,28px"></dc-import>
+      <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:19px;letter-spacing:-0.01em;color:#EAF2EF;"><span style="background:linear-gradient(120deg,#2DF5A6,#1FD8E6);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">LED</span>sation</span>
+    </a>
+    <div style="display:flex;align-items:center;gap:32px;">
+      <div style="display:flex;gap:28px;font-size:15px;color:#A9B7B2;">
+        <a href="LEDsation Landing.dc.html" style="text-decoration:none;">Home</a>
+        <a href="#assortiment" style="text-decoration:none;color:#2DF5A6;">Assortiment</a>
+        <a href="LEDsation Landing.dc.html#projecten" style="text-decoration:none;">Projecten</a>
+      </div>
+      <a href="LEDsation Offerte.dc.html" style="padding:11px 22px;border-radius:100px;background:linear-gradient(120deg,#2DF5A6,#1FD8E6);color:#06090A;font-weight:700;font-size:15px;text-decoration:none;box-shadow:0 0 24px rgba(45,245,166,0.3);">Offerte aanvragen</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header id="assortiment" style="position:relative;max-width:1240px;margin:0 auto;padding:80px 32px 50px;overflow:hidden;">
+    <div style="position:absolute;top:-160px;left:-100px;width:600px;height:600px;background:radial-gradient(circle,rgba(45,245,166,0.14),transparent 66%);filter:blur(10px);pointer-events:none;"></div>
+    <div style="position:relative;">
+      <div style="display:inline-flex;align-items:center;gap:10px;padding:8px 16px;border:1px solid rgba(45,245,166,0.3);border-radius:100px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#2DF5A6;margin-bottom:26px;">
+        <span style="width:7px;height:7px;border-radius:50%;background:#2DF5A6;box-shadow:0 0 12px #2DF5A6;animation:ledpulse 2s infinite;"></span>
+        Ons assortiment
+      </div>
+      <h1 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(40px,6vw,68px);line-height:1.02;letter-spacing:-0.035em;margin:0 0 20px;max-width:800px;">Voor elke ruimte de juiste <span style="background:linear-gradient(120deg,#2DF5A6,#1FD8E6);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">LED-wall</span>.</h1>
+      <p style="font-size:19px;color:#A9B7B2;max-width:560px;margin:0;">Van fijne pixelpitch voor je beursstand tot weerbestendige panelen voor buiten. Alles inclusief transport, opbouw en bediening.</p>
+    </div>
+  </header>
+
+  <!-- FILTER CHIPS -->
+  <div style="max-width:1240px;margin:0 auto;padding:0 32px 30px;display:flex;gap:10px;flex-wrap:wrap;">
+    <sc-for list="{{ chips }}" as="chip" hint-placeholder-count="4">
+      <div onClick="{{ chip.onClick }}" style="{{ chip.style }}">{{ chip.label }}</div>
+    </sc-for>
+  </div>
+
+  <!-- PRODUCT GRID -->
+  <section style="max-width:1240px;margin:0 auto;padding:0 32px 40px;">
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:22px;">
+      <sc-for list="{{ products }}" as="p" hint-placeholder-count="6">
+        <a href="{{ p.href }}" style="background:#0B0F11;border:1px solid rgba(255,255,255,0.07);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;text-decoration:none;color:inherit;transition:border-color .15s,transform .15s;" style-hover="border-color:rgba(45,245,166,0.4);transform:translateY(-3px);">
+          <!-- image -->
+          <div style="position:relative;aspect-ratio:16/10;background:repeating-linear-gradient(45deg,#111A1C,#111A1C 13px,#0E1517 13px,#0E1517 26px);overflow:hidden;display:flex;align-items:center;justify-content:center;">
+            <sc-if value="{{ p.hasImg }}" hint-placeholder-val="{{ false }}">
+              <div role="img" aria-label="{{ p.name }}" style="{{ p.imgStyle }}"></div>
+            </sc-if>
+            <sc-if value="{{ p.noImg }}" hint-placeholder-val="{{ true }}">
+              <div style="position:absolute;inset:0;background:radial-gradient(circle at 70% 30%,{{ p.glow }},transparent 65%);"></div>
+              <dc-import name="Mark" size="46" hint-size="46px,46px"></dc-import>
+              <span style="position:absolute;bottom:12px;right:14px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;color:#5A6B66;">PRODUCTFOTO</span>
+            </sc-if>
+            <span style="position:absolute;top:14px;left:14px;padding:5px 12px;border-radius:100px;background:rgba(6,9,10,0.72);backdrop-filter:blur(6px);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em;color:{{ p.tagColor }};">{{ p.category }}</span>
+          </div>
+          <!-- body -->
+          <div style="padding:24px;display:flex;flex-direction:column;flex:1;">
+            <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;">
+              <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:22px;letter-spacing:-0.01em;margin:0;">{{ p.name }}</h3>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#2DF5A6;flex-shrink:0;">{{ p.pitch }}</span>
+            </div>
+            <p style="color:#8A9A95;font-size:15px;margin:10px 0 14px;">{{ p.desc }}</p>
+            <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:16px;">
+              <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;color:#2DF5A6;">{{ p.price }}</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#8A9A95;">{{ p.priceUnit }}</span>
+            </div>
+            <!-- specs -->
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.06);border-radius:12px;overflow:hidden;margin-bottom:18px;">
+              <sc-for list="{{ p.specsTop }}" as="s" hint-placeholder-count="4">
+                <div style="background:#0B0F11;padding:12px 14px;">
+                  <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#5A6B66;">{{ s.k }}</div>
+                  <div style="font-size:14px;font-weight:600;margin-top:3px;">{{ s.v }}</div>
+                </div>
+              </sc-for>
+            </div>
+            <!-- use tags -->
+            <div style="display:flex;flex-wrap:wrap;gap:7px;margin-bottom:20px;">
+              <sc-for list="{{ p.uses }}" as="u" hint-placeholder-count="3">
+                <span style="padding:4px 11px;border-radius:100px;border:1px solid rgba(255,255,255,0.1);font-size:12px;color:#A9B7B2;">{{ u.label }}</span>
+              </sc-for>
+            </div>
+            <span style="margin-top:auto;display:flex;align-items:center;justify-content:center;gap:8px;padding:12px;border:1px solid rgba(45,245,166,0.35);border-radius:11px;background:rgba(45,245,166,0.08);color:#2DF5A6;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14px;">Bekijk product →</span>
+          </div>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- HELP STRIP -->
+  <section style="max-width:1240px;margin:0 auto;padding:30px 32px 90px;">
+    <div style="position:relative;border-radius:24px;overflow:hidden;border:1px solid rgba(45,245,166,0.2);background:linear-gradient(160deg,#0E1A16,#06090A);padding:48px 40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px;">
+      <div style="position:absolute;inset:0;background:radial-gradient(circle at 85% 0%,rgba(31,216,230,0.16),transparent 55%);"></div>
+      <div style="position:relative;max-width:520px;">
+        <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(24px,3.5vw,34px);letter-spacing:-0.02em;margin:0 0 10px;">Niet zeker welk scherm je nodig hebt?</h3>
+        <p style="color:#A9B7B2;margin:0;font-size:17px;">Vertel ons over je locatie en evenement — wij adviseren de juiste pixelpitch, helderheid en afmeting.</p>
+      </div>
+      <a href="LEDsation Offerte.dc.html" style="position:relative;flex-shrink:0;padding:16px 30px;border-radius:100px;background:linear-gradient(120deg,#2DF5A6,#1FD8E6);color:#06090A;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;text-decoration:none;box-shadow:0 0 40px rgba(45,245,166,0.35);">Vraag advies aan →</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="border-top:1px solid rgba(255,255,255,0.07);">
+    <div style="max-width:1240px;margin:0 auto;padding:40px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;">
+      <a href="LEDsation Landing.dc.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+        <dc-import name="Mark" size="26" hint-size="26px,26px"></dc-import>
+        <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;color:#EAF2EF;"><span style="background:linear-gradient(120deg,#2DF5A6,#1FD8E6);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">LED</span>sation</span>
+      </a>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.1em;color:#3A4642;">© 2026 LEDsation · LED Wall Verhuur · Nederland</div>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { filter: "alle" };
+    this.chipDefs = [
+      { key: "alle", label: "Alles" },
+      { key: "binnen", label: "Binnen" },
+      { key: "buiten", label: "Buiten" },
+      { key: "creatief", label: "Creatief" },
+    ];
+  }
+
+  componentDidMount() {
+    if (!(window.LEDSATION_PRODUCTS || []).length) {
+      this._t = setInterval(() => {
+        if ((window.LEDSATION_PRODUCTS || []).length) { clearInterval(this._t); this.forceUpdate(); }
+      }, 50);
+    }
+  }
+  componentWillUnmount() { if (this._t) clearInterval(this._t); }
+
+  setFilter = (k) => this.setState({ filter: k });
+
+  renderVals() {
+    const all = window.LEDSATION_PRODUCTS || [];
+    const filter = this.state.filter;
+    const chips = this.chipDefs.map((c) => {
+      const active = filter === c.key;
+      return {
+        label: c.label,
+        onClick: () => this.setFilter(c.key),
+        style: {
+          padding: "9px 20px", borderRadius: "100px", cursor: "pointer",
+          fontFamily: "'Space Grotesk',sans-serif", fontWeight: 600, fontSize: "14px",
+          border: "1px solid " + (active ? "rgba(45,245,166,0.4)" : "rgba(255,255,255,0.12)"),
+          background: active ? "rgba(45,245,166,0.12)" : "transparent",
+          color: active ? "#2DF5A6" : "#A9B7B2",
+          transition: "all .15s",
+        },
+      };
+    });
+    const products = all
+      .filter((p) => filter === "alle" || p.cat === filter)
+      .map((p) => ({
+        ...p,
+        href: "LEDsation Product.dc.html?p=" + p.id,
+        hasImg: !!p.img,
+        noImg: !p.img,
+        imgStyle: p.img ? { position: "absolute", inset: 0, backgroundImage: 'url("' + p.img + '")', backgroundSize: "cover", backgroundPosition: "center" } : null,
+        specsTop: p.specs.slice(0, 4).map(([k, v]) => ({ k, v })),
+        uses: p.uses.map((label) => ({ label })),
+      }));
+    return { chips, products };
+  }
+}
+</script>
+</body>
+</html>
