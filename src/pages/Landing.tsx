@@ -241,9 +241,14 @@ export default function Landing() {
         <div className="footer-inner">
           <Logo size={26} />
           <div className="footer-copy">© 2026 LEDsation · LED Wall Verhuur · Nederland</div>
-          <Link to="/brandkit" className="footer-link">
-            ↗ Brand kit
-          </Link>
+          <div className="footer-links">
+            <Link to="/dashboard" className="footer-link">
+              Dashboard
+            </Link>
+            <Link to="/brandkit" className="footer-link">
+              ↗ Brand kit
+            </Link>
+          </div>
         </div>
       </footer>
     </div>

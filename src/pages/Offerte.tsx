@@ -519,6 +519,9 @@ export default function Offerte() {
         <div className="footer-inner">
           <Logo size={26} />
           <div className="footer-copy">© 2026 LEDsation · LED Wall Verhuur · Nederland</div>
+          <Link to="/dashboard" className="footer-link">
+            Dashboard
+          </Link>
         </div>
       </footer>
     </div>
