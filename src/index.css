@@ -206,12 +206,6 @@ body {
   color: var(--color-muted-4);
 }
 
-.footer-links {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
 .footer-link {
   font-family: var(--font-mono);
   font-size: 12px;
